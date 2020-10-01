@@ -7,14 +7,42 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
+import XMonad.Hooks.SetWMName
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
--- The preferred terminal program, which is used in a binding below and by
+--- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
---
-myTerminal      = "alacritty"
+myFont :: String
+myFont = "xft:Mononoki Nerd Font:bold:size=9:antialias=true:hinting=true"
+
+myModMask :: KeyMask
+myModMask = mod4Mask -- set modkey to super key
+
+myTerminal :: String
+myTerminal = "alacritty" -- set defualt terminal
+
+myBrowser :: String
+myBrowser = "brave"
+
+myEditor :: String
+myEditor ="emacsclient -c -a emacs "
+
+myBorderWidth :: Dimension
+myBorderWidth = 2
+
+myNormalColor :: String
+myNormalColor = "#292d3e"
+
+myFocusColor :: String
+myFocusColor = "#29c3ce"
+
+altMask :: KeyMask
+altMask = mod1Mask
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -24,31 +52,25 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
--- Width of the window border in pixels.
---
-myBorderWidth   = 2
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
-myModMask       = mod4Mask
+myStartupHook :: X()
+myStartupHook = do
+  spawnOnce "autorandr &"
+  spawnOnce "nitrogen --restore &"
+  spawnOnce "xmobar &"
+  spawnOnce "picom &"
+  setWMName "LG3D"
 
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
+--myColorizer :: Window -> Bool -> X (String, String)
+--myColorizer = colorRangeFromClassName
+--                  (0x29,0x2d,0x3e) -- lowest inactive bg
+--                  (0x29,0x2d,0x3e) -- highest inactive bg
+--                  (0xc7,0x92,0xea) -- active bg
+--                  (0xc0,0xa7,0x9a) -- inactive fg
+--                  (0x29,0x2d,0x3e) -- active fg
+
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces    = ["dev","www","doc","emu","social","mus","vid"]
-
--- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#29c3ce"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -232,18 +254,6 @@ myEventHook = mempty
 myLogHook = return ()
 
 ------------------------------------------------------------------------
--- Startup hook
-
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
-myStartupHook = do
-  spawnOnce "nitrogen --restore &"
-  spawnOnce "picom &"
-
-------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
@@ -266,8 +276,8 @@ defaults = def {
         borderWidth        = myBorderWidth,
         modMask            = myModMask,
         workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+        normalBorderColor  = myNormalColor,
+        focusedBorderColor = myFocusColor,
 
       -- key bindings
         keys               = myKeys,
