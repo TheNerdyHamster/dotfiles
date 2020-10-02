@@ -1,4 +1,4 @@
-Config { font = "xft:FiraCode Mono:pixelsize=12:antialias=true:hinting=true"
+Config { font = "xft:FiraCode Nerd Fonts:pixelsize=11:antialias=true:hinting=true"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
