@@ -1,0 +1,71 @@
+#+TITLE: Lilahamstern's Doom Emacs Config
+#+AUTHOR: Lilahamstern
+#+STARTUP: showeverything
+
+** CL DEPRECATED WARNING IGNORE
+With emacs-27 package `cl` got a deprecated warning.
+#+BEGIN_SRC emacs-lisp
+(setq byte-compile-warnings '(cl-functions))
+#+END_SRC
+
+** IDENTITY
+Some functionality uses this to identify you, e.g. GPG configuration, email
+clients, file templates and snippets.
+
+#+BEGIN_SRC emacs-lisp
+(setq user-full-name "Leo Rönnebro"
+      user-mail-address "leo.ronnebro@hamsterapps.net")
+#+END_SRC
+** FONTS
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+
++ `doom-font'
++ `doom-variable-pitch-font'
++ `doom-big-font' -- used for `doom-big-font-mode'; use this for
+  presentations or streaming.
+
+#+begin_src emacs-lisp :tangle yes
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+#+end_src
+
+** DOOM THEME
+#+begin_src emacs-lisp :tangle yes
+(setq doom-theme 'doom-one)
+#+end_src
+
+** ORG MODE
+Note that I wrapped everything in (after! org). Without this, my settings might be evaluated too early, which will result in my settings being overwritten by Doom's defaults.
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-directory "~/Documents/org/")
+  (setq org-agenda-files '("~/Documents/org/agenda.org"))
+  (setq org-log-done 'time)
+  (setq org-log-done 'note)
+  (setq org-todo-keywords '((sequence "TODO(t)" "PROJ(p)" "IMPORTANT(i)" "WAIT(w)" "|" "DONE(d)" "CANCELLED(c)" )))
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+)
+#+END_SRC
+
+** LINE SETTINGS
+ #+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 't)
+(global-set-key "\C-x\ t" 'toggle-truncate-lines)
+#+END_SRC
+
+** NEOTREE
+Setting the neotree width to be adjustable.
+#+BEGIN_SRC emacs-lisp
+(setq neo-window-fixed-size nil)
+#+END_SRC
+
+** SPLITS
+Force splits to open on the right
+#+BEGIN_SRC emacs-lisp
+(defun prefer-horizontal-split ()
+  (set-variable 'split-height-threshold nil t)
+  (set-variable 'split-width-threshold 40 t)) ; make this as low as needed
+(add-hook 'markdown-mode-hook 'prefer-horizontal-split)
+#+END_SRC
