@@ -1,11 +1,11 @@
 Config { font = "xft:FiraCode Nerd Fonts:pixelsize=11:antialias=true:hinting=true"
        , additionalFonts = []
        , borderColor = "black"
-       , border = TopB
+       , border = NoBorder
        , bgColor = "black"
        , fgColor = "grey"
-       , alpha = 255
-       , position = Top
+       , alpha = 100
+       , position = TopW L 85
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -34,5 +34,5 @@ Config { font = "xft:FiraCode Nerd Fonts:pixelsize=11:antialias=true:hinting=tru
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
-                    \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
+                    \<fc=white>%date%</fc> {  %EGPF% | %uname%"
        }
