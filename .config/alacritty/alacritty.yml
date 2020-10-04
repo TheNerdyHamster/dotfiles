@@ -91,7 +91,7 @@ font:
   size: 10
   # Normal (roman) font face
   normal:
-    family: "FiraCode NF"
+    family: "FiraCode Nerd Font"
   # Bold font face
   #bold:
     # Font family
