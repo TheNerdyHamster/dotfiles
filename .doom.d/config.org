@@ -8,6 +8,11 @@ With emacs-27 package `cl` got a deprecated warning.
 (setq byte-compile-warnings '(cl-functions))
 #+END_SRC
 
+** ENVIORMENT
+Setup basic enviorment
+#+begin_src emacs-lisp :tangle yes
+(getenv "PATH")
+#+end_src
 ** IDENTITY
 Some functionality uses this to identify you, e.g. GPG configuration, email
 clients, file templates and snippets.
@@ -16,6 +21,38 @@ clients, file templates and snippets.
 (setq user-full-name "Leo Rönnebro"
       user-mail-address "leo.ronnebro@hamsterapps.net")
 #+END_SRC
+
+** LANG
+*** C#
+#+begin_src emacs-lisp :tangle yes
+(eval-after-load
+  'company
+  '(add-to-list 'company-backends #'company-omnisharp))
+
+(defun custom-csharp-mode-setup ()
+  (omnisharp-mode)
+  (company-mode)
+  (flycheck-mode)
+
+  (setq indent-tabs-mode nil)
+  (setq c-syntactic-indentation t)
+  (c-set-style "ellemtel")
+  (setq c-basic-offset 4)
+  (setq truncate-lines t)
+  (setq tab-width 4)
+  (setq evil-shift-width 4)
+
+  (electric-pair-local-mode 1) ;; Emacs 25
+
+  (local-set-key (kbd "C-c R") 'dotnet-run)
+  (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
+  (local-set-key (kdb "C-c f") 'omnisharp-code-format-entire-file)
+  (local-set-key (kbd "C-c C-c") 'recompile))
+
+(add-hook 'csharp-mode-hook 'custom-csharp-mode-setup t)
+#+end_src
+** MAIL
+
 ** FONTS
 Doom exposes five (optional) variables for controlling fonts in Doom. Here
 are the three important ones:
@@ -49,16 +86,38 @@ Note that I wrapped everything in (after! org). Without this, my settings might 
 )
 #+END_SRC
 
+*** ORG SUPER AGENDA
+#+begin_src emacs-lisp
+(use-package! org-super-agenda
+    :after org-agenda
+    :init
+    (setq org-super-agenda-groups '((:name "Today"
+                                        :time-grid t
+                                        :scheduled today)
+                                    (:name "Due today"
+                                        :deadline today)
+                                    (:name "Important"
+                                        :priority "A")
+                                    (:name "Due soon"
+                                        :deadline future)
+                                    (:name "Big Outcomes"
+                                        :tag "bo")
+                                    ))
+    :config
+    (org-super-agenda-mode)
+)
+#+end_src
 ** LINE SETTINGS
  #+BEGIN_SRC emacs-lisp
 (setq display-line-numbers-type 't)
 (global-set-key "\C-x\ t" 'toggle-truncate-lines)
+:w
 #+END_SRC
 
-** NEOTREE
-Setting the neotree width to be adjustable.
+** PROJECT TILE
+Set project tile search path.
 #+BEGIN_SRC emacs-lisp
-(setq neo-window-fixed-size nil)
+(setq projectile-project-search-path '("~/code/"))
 #+END_SRC
 
 ** SPLITS
