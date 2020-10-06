@@ -3,6 +3,57 @@
 (setq user-full-name "Leo Rönnebro"
       user-mail-address "leo.ronnebro@hamsterapps.net")
 
+(map! :leader
+      :desc "Toggle hiding"
+      "t h" #'hs-toggle-hiding)
+(map! :leader
+      :desc "Toggle line comment"
+      "t c" #'comment-line)
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :config
+  (progn
+    (setq treemacs-position                      'right)
+
+    ;; The default width and height of the icons is 22 pixels. If you are
+    ;; using a Hi-DPI display, uncomment this to double the icon size.
+    ;;(treemacs-resize-icons 44)
+
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode t)
+    (pcase (cons (not (null (executable-find "git")))
+                 (not (null treemacs-python-executable)))
+      (`(t . t)
+       (treemacs-git-mode 'deferred))
+      (`(t . _)
+       (treemacs-git-mode 'simple))))
+  :bind
+  (:map global-map
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-evil
+  :after treemacs evil
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
+
 (eval-after-load
   'company
   '(add-to-list 'company-backends #'company-omnisharp))
@@ -12,7 +63,7 @@
   (company-mode)
   (flycheck-mode)
 
-  (setq indent-tabs-mode nil)
+  (setq indent-tabs-mode t)
   (setq c-syntactic-indentation t)
   (c-set-style "ellemtel")
   (setq c-basic-offset 4)
@@ -24,7 +75,7 @@
 
   (local-set-key (kbd "C-c R") 'dotnet-run)
   (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
-  (local-set-key (kdb "C-c f") 'omnisharp-code-format-entire-file)
+  (local-set-key (kbd "C-c f") 'omnisharp-code-format-entire-file)
   (local-set-key (kbd "C-c C-c") 'recompile))
 
 (add-hook 'csharp-mode-hook 'custom-csharp-mode-setup t)
@@ -32,7 +83,7 @@
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13)
       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-laserwave)
 
 (after! org
   (setq org-directory "~/Documents/org/")
@@ -64,9 +115,11 @@
 )
 
 (setq display-line-numbers-type 't)
-(global-set-key "\C-x\ t" 'toggle-truncate-lines)
-:w
+(map! :leader
+      :desc "Toggle truncate lines"
+      "t t" #'toggle-truncate-lines)
 
+;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (setq projectile-project-search-path '("~/code/"))
 
 (defun prefer-horizontal-split ()
