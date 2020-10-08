@@ -31,6 +31,9 @@ clients, file templates and snippets.
 (map! :leader
       :desc "Toggle line comment"
       "t c" #'comment-line)
+(map! :leader
+      :desc "Open SSH connection"
+      "o s" #'ssh-conn)
 #+end_src
 
 ** TREEMACS
@@ -80,6 +83,18 @@ clients, file templates and snippets.
   :ensure t)
 #+end_src
 
+** TERMINAL
+#+begin_src emacs-lisp :tangle yes
+(defun ssh-conn (host port)
+  "Connect to a remote host by SSH."
+  (interactive "sHost: \nsPort (default 22): ")
+  (let* ((port (if (equal port "") "22" port))
+         (switches (list host "-p" port)))
+       (set-buffer (apply 'make-term "ssh" "ssh" nil switches))
+       (term-mode)
+       (term-char-mode)
+       (switch-to-buffer "*ssh*")))
+#+end_src
 ** LANG
 *** C#
 #+begin_src emacs-lisp :tangle yes
@@ -144,7 +159,17 @@ Note that I wrapped everything in (after! org). Without this, my settings might 
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 )
 #+END_SRC
-
+*** ORG CODE BLOCKS
+#+begin_src emacs-lisp :tangle yes
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (sh . t)
+   (java . t)
+   (js . t)
+   (org . t)
+  ))
+#+end_src
 *** ORG SUPER AGENDA
 #+begin_src emacs-lisp
 (use-package! org-super-agenda
