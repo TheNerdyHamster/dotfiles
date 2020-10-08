@@ -9,6 +9,9 @@
 (map! :leader
       :desc "Toggle line comment"
       "t c" #'comment-line)
+(map! :leader
+      :desc "Open SSH connection"
+      "o s" #'ssh-conn)
 
 (use-package treemacs
   :ensure t
@@ -54,6 +57,16 @@
   :after treemacs magit
   :ensure t)
 
+(defun ssh-conn (host port)
+  "Connect to a remote host by SSH."
+  (interactive "sHost: \nsPort (default 22): ")
+  (let* ((port (if (equal port "") "22" port))
+         (switches (list host "-p" port)))
+       (set-buffer (apply 'make-term "ssh" "ssh" nil switches))
+       (term-mode)
+       (term-char-mode)
+       (switch-to-buffer "*ssh*")))
+
 (eval-after-load
   'company
   '(add-to-list 'company-backends #'company-omnisharp))
@@ -94,6 +107,15 @@
   (require 'org-bullets)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 )
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (sh . t)
+   (java . t)
+   (js . t)
+   (org . t)
+  ))
 
 (use-package! org-super-agenda
     :after org-agenda
