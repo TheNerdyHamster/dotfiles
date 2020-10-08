@@ -107,6 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# sshagent
+alias ssha="eval $(ssh-agent) && ssh-add"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
@@ -116,3 +119,7 @@ export PATH=~/.emacs.d/bin:$PATH
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+TERMINAL=terminator
+export TERMINAL
+
