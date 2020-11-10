@@ -2,6 +2,22 @@
 #+AUTHOR: The Nerdy Hamster
 #+PROPERTY: header-args :mkdirp yes
 
+* Table of Contents
+:PROPERTIES:
+:TOC:      :include all :depth 2
+:END:
+
+:CONTENTS:
+- [[#table-of-contents][Table of Contents]]
+- [[#information][Information]]
+- [[#general][General]]
+  - [[#zshrc][zshrc]]
+- [[#desktop][Desktop]]
+  - [[#bspwm][BSPWM]]
+  - [[#polybar][Polybar]]
+  - [[#dunst][Dunst]]
+:END:
+
 * Information
 When you generate the config file, the exectuable permission is remove from the files.
 Please run 
