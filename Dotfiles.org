@@ -2,8 +2,6 @@
 #+AUTHOR: The Nerdy Hamster
 #+PROPERTY: header-args :mkdirp yes
 
-* Table of Contents :TOC:
-
 * Information
 When you generate the config file, the exectuable permission is remove from the files.
 Please run 
