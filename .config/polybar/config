@@ -113,8 +113,8 @@ interval = 3
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = <label> <ramp-coreload>
-format-underline = ${colors.underline-1}
+format = <label>
+;format-underline = ${colors.underline-1}
 ; click-left = emacsclient -e "(proced)"
 label = %percentage:2%%
 ; ramp-coreload-spacing = 0
@@ -143,7 +143,7 @@ time-alt = %H:%M
 format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = ${colors.underline-1}
 
-label =   %time%
+label = %time%
 
 [module/battery]
 type = internal/battery
@@ -181,9 +181,9 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <label>
+format = <label>
 ;format-underline = ${colors.underline-1}
-format-warn = <label-warn>
+format-warn = <label-warn>
 ;format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
