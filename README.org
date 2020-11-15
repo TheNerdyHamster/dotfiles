@@ -342,7 +342,11 @@ foreground-alt = #000
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
-underline-1 = #58BE9A
+underline-1 = #2FAFFF
+light-purple = #AA95EE
+light-pink = #ED89DE
+light-blue = #2FAFFF
+light-green = #00B4B1 
 
 [bar/panel]
 width = 100%
@@ -368,7 +372,7 @@ padding-right = 1
 module-margin = 1
 
 font-0 = "Cantarell:size=10:weight=bold;2"
-font-1 = "Font Awesome:size=12;2"
+font-1 = "Font Awesome:size=10;2"
 font-2 = "Material Icons:size=12;5"
 font-3 = "Fira Mono:size=8;-3"
 
@@ -388,24 +392,25 @@ blacklist-0 = num lock
 
 format-prefix-font = 1
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.underline-1}
+;format-prefix-underline = ${colors.underline-1}
 
 label-layout =  %layout%
-label-layout-underline = ${colors.underline-1}
+;label-layout-underline = ${colors.underline-1}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-underline = ${colors.underline-1}
+;label-indicator-underline = ${colors.underline-1}
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.underline-1}
+label-focused-foreground = ${colors.light-green}
+;label-focused-underline= ${colors.underline-1}
 label-focused-padding = 2
 
 label-occupied = %icon%
+label-occupied-foreground = ${colors.light-pink}
 label-occupied-padding = 2
 
 label-urgent = %icon%
@@ -413,19 +418,20 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
+;label-empty-foreground = ${colors.background-alt}
 label-empty-padding = 2
 
 ; Separator in between workspaces
-label-separator = " | "
+;label-separator = 
 
-ws-icon-0 = I; 
-ws-icon-1 = II; 
-ws-icon-2 = III;  
-ws-icon-3 = IV; 
-ws-icon-4 = V; 
-ws-icon-5 = VI; 
+; ws-icon-0 = I; 
+; ws-icon-1 = II; 
+; ws-icon-2 = III;   
+; ws-icon-3 = IV; 
+; ws-icon-4 = V; 
+; ws-icon-5 = VI;   
 
+ws-icon-default = 
 
 [module/spotify]
 type = custom/script
@@ -439,36 +445,33 @@ format = <label> <ramp-coreload>
 format-underline = ${colors.underline-1}
 ; click-left = emacsclient -e "(proced)"
 label = %percentage:2%%
-ramp-coreload-spacing = 0
-ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = ${colors.foreground-alt}
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
+; ramp-coreload-spacing = 0
+; ramp-coreload-0 = ▁
+; ramp-coreload-0-foreground = ${colors.foreground-alt}
+; ramp-coreload-1 = ▂
+; ramp-coreload-2 = ▃
+; ramp-coreload-3 = ▄
+; ramp-coreload-4 = ▅
+; ramp-coreload-5 = ▆
+; ramp-coreload-6 = ▇
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-underline = ${colors.underline-1}
+;format-underline = ${colors.underline-1}
 label = %percentage_used%%
 
 [module/date]
 type = internal/date
 interval = 1
 
-date = "%b %e"
-date-alt = "%B %d"
-
-time = %l:%M:%S %p
-time-alt = %H:%M:%S
+time = %l:%M %p
+time-alt = %H:%M
 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.underline-1}
+;format-underline = ${colors.underline-1}
 
-label =   %date%  %time%
+label =   %time%
 
 [module/battery]
 type = internal/battery
@@ -478,14 +481,15 @@ full-at = 98
 
 label-charging = %percentage%%
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.underline-1}
+;format-charging-underline = ${colors.underline-1}
 
 label-discharging = %percentage%%
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+;format-discharging-underline = ${self.format-charging-underline}
 
 format-full = <ramp-capacity> <label-full>
-format-full-underline = ${self.format-charging-underline}
+format-full-foreground = ${colors.light-green}
+;format-full-underline = ${colors.light-green}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -506,9 +510,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <label>
-format-underline = ${colors.underline-1}
+;format-underline = ${colors.underline-1}
 format-warn = <label-warn>
-format-warn-underline = ${self.format-underline}
+;format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%!
