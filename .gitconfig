@@ -4,6 +4,6 @@
 [github]
 	user = Leo Ronnebro
 [core]
-	editor = emacs
+	editor = emacsclient --alternate-editor=\"\" --no-wait $*
 [color]
 	ui = true
