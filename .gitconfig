@@ -3,3 +3,7 @@
 	name = Leo Rönnebro
 [github]
 	user = Leo Ronnebro
+[core]
+	editor = emacs
+[color]
+	ui = true
