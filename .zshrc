@@ -75,7 +75,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,13 +104,16 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+zstyle :omz:plugins:ssh-agent identities id_ed25519 git_rsa
+#source ~/_mullvad
+export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="$PATH:$HOME/go/bin"
 
 export KUBECONFIG=:/home/lilahamstern/.kube/config:/home/lilahamstern/.kube/configs/kubeconfig.yaml
+export KUBE_EDITOR=emacs
 
 # Autocompletion for dotnet-cli
 _dotnet_zsh_complete()
