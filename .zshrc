@@ -9,6 +9,8 @@ plugins=(git ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
+alias e='emacsclient --alternate-editor="" --no-wait $*'
+
 zstyle :omz:plugins:ssh-agent identities id_ed25519 git_rsa
 #source ~/_mullvad
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
@@ -29,3 +31,6 @@ _dotnet_zsh_complete()
 }
 
 compctl -K _dotnet_zsh_complete dotnet
+
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
