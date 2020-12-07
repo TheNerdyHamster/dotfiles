@@ -32,12 +32,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
- 
-setxkbmap -rules evdev -model pc105 -layout "us,se" -option "grp:alt_shift_toggle"
-
+setxkbmap -rules evdev -model pc105 -layout "us,se" -option "grp:alt_space_toggle"
 autorandr -c
 
 # TODO: Switch nitrogen with feh.
 nitrogen --restore
+picom &
 
 exec xmonad
