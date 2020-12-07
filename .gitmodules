@@ -1,0 +1,6 @@
+[submodule ".emacs.d"]
+	path = .emacs.d
+	url = https://github.com/TheNerdyHamster/The-Nerdy-Hamster-Emacs
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/TheNerdyHamster/TNH-nvim
