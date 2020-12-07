@@ -1,9 +1,12 @@
 [user]
 	email = leo.ronnebro@hamsterapps.net
 	name = Leo Rönnebro
+  signingkey = 89CC9285D0957C81
+[commit]
+  gpgSign = true
 [github]
-	user = Leo Ronnebro
+	user = TheNerdyHamster
 [core]
-	editor = emacsclient --alternate-editor=\"\" --no-wait $*
+	editor = nvim
 [color]
 	ui = true
