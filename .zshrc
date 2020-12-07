@@ -1,36 +1,23 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-export ZSH="/home/lilahamstern/.oh-my-zsh"
+export ZSH="/home/thenerdyhamster/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-plugins=(git ssh-agent)
+HYPHEN_INSENSITIVE="true"
 
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+plugins=(git fast-syntax-highlighting ssh-agent sudo)
+
+# Source 
 source $ZSH/oh-my-zsh.sh
 
-alias e='emacsclient --alternate-editor="" --no-wait $*'
+source ~/.zsh/.aliases.zsh
+source ~/.zsh/.completion.zsh
+source ~/.zsh/.exports.zsh
 
-zstyle :omz:plugins:ssh-agent identities id_ed25519 git_rsa
-#source ~/_mullvad
-export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export PATH="$PATH:$HOME/go/bin"
-
-export KUBECONFIG=:/home/lilahamstern/.kube/config:/home/lilahamstern/.kube/configs/kubeconfig.yaml
-export KUBE_EDITOR='emacsclient --alternate-editor="" --no-wait $*'
-
-# Autocompletion for dotnet-cli
-_dotnet_zsh_complete()
-{
-  local completions=("$(dotnet complete "$words")")
-
-  reply=( "${(ps:\n:)completions}" )
-}
-
-compctl -K _dotnet_zsh_complete dotnet
-
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+# Star ship
+eval "$(starship init zsh)"
