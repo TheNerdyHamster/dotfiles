@@ -1,0 +1,16 @@
+[user]
+        name = {{ full_name }}
+        email = {{ git_email }}
+        signingkey = {{ git_signingkey }}
+[github]
+        user = {{ git_user }}
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+[core]
+        excludesfile = ~/.gitignore_global
+        editor = nvim
+[commit]
+  gpgSign = {{ git_sign_commits }}

@@ -1,0 +1,10 @@
+- name: Setup local workstation with TNH dotfiles.
+  hosts: local
+  roles:
+    - role: git
+      tags:
+        - git
+
+    - role: yay
+      tags:
+        - yay
