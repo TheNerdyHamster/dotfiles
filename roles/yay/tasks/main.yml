@@ -1,0 +1,33 @@
+- name: Clone yay from aur.archlinux.org.
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    version: master
+    update: yes
+  when: install_yay
+
+- name: Compile yay and add it to '/usr/bin/yay'.
+  command: makepkg --noconfirm -si
+  args:
+    chdir: /tmp/yay
+    creates: /usr/bin/yay
+  when: install_yay
+
+  #- name: Upgrade system.
+  #aur:
+    #  upgrade: yes
+    #when: package_upgrade
+
+- name: Install yay packages.
+  aur:
+    use: yay
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+
+  # TODO: Fix uninstallation of packages
+  #- name: Remove yay packages.
+  #aur:
+    #  name: "{{ item }}"
+    #state: absent
+    #loop: "{{ remove_packages }}"
