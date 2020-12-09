@@ -21,6 +21,7 @@ packages:
   - pavucontrol
   - reflector
   - strace
+  - tree
   - unzip
   - wget
   - wpa_supplicant
