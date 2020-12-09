@@ -19,5 +19,8 @@ source ~/.zsh/.aliases.zsh
 source ~/.zsh/.completion.zsh
 source ~/.zsh/.exports.zsh
 
+# asdf
+. $HOME/.asdf/asdf.sh
+
 # Star ship
 eval "$(starship init zsh)"
