@@ -17,6 +17,10 @@
       tags:
         - asdf
 
+    - role: docker
+      tags:
+        - docker
+
     - role: go
       tags:
         - go
