@@ -22,7 +22,6 @@ packages:
   - reflector
   - strace
   - unzip
-  - vim
   - wget
   - wpa_supplicant
   - zip
