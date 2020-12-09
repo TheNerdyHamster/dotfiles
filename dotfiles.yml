@@ -5,6 +5,10 @@
       tags:
         - git
 
-    - role: yay
+    #- role: zsh
+    #  tags:
+    #    - zsh
+    
+    - role: zsh
       tags:
-        - yay
+        - zsh
