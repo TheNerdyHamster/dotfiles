@@ -11,3 +11,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='mvim'
 fi
+
+# Golang
+export PATH="$PATH:$HOME/go/bin"
