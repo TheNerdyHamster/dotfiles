@@ -1,8 +1,0 @@
-export EDITOR=vim
-export PATH_TO_PLAYGROUND="$HOME/playground"
-export PATH_TO_PROJECTS="$HOME/Projects"
-
-# This should be the last line of the file
-# For local changes
-# Don't make edits below this
-[ -f ".exports.local" ] && source ".exports.local"
