@@ -20,6 +20,12 @@
     update: yes
   when: not rg_devicons_stat.stat.exists
 
+- name: Install 'dragon' for drag and drop.
+  aur:
+    use: yay
+    name: dragon-drag-and-drop
+    state: present
+
 - name: Check if rc.conf exists.
   stat: path="{{ dotfiles_user_home }}/.config/ranger/rc.conf"
   register: rc_stat
@@ -35,4 +41,21 @@
   file:
     src: "{{ dotfiles_home }}/roles/ranger/files/rc.conf"
     dest: "{{ dotfiles_user_home }}/.config/ranger/rc.conf"
+    state: link
+
+- name: Check if rifle.conf exists.
+  stat: path="{{ dotfiles_user_home }}/.config/ranger/rifle.conf"
+  register: rifle_stat
+
+- name: Backup rifle.conf.
+  command: mv ~/.config/ranger/rifle.conf ~/.config/ranger/rifle.conf.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/ranger/rifle.conf.bak"
+  when: rifle_stat.stat.exists
+
+
+- name: Symlink rifle.conf.
+  file:
+    src: "{{ dotfiles_home }}/roles/ranger/files/rifle.conf"
+    dest: "{{ dotfiles_user_home }}/.config/ranger/rifle.conf"
     state: link
