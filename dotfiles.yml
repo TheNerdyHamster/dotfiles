@@ -21,6 +21,10 @@
       tags:
         - ranger
 
+    - role: fzf
+      tags:
+        - fzf
+
     - role: asdf
       tags:
         - asdf
