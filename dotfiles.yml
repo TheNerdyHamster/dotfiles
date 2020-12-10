@@ -17,6 +17,10 @@
       tags:
         - neovim
 
+    - role: ranger
+      tags:
+        - ranger
+
     - role: asdf
       tags:
         - asdf

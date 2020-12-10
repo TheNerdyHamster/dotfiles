@@ -1,0 +1,38 @@
+- name: Install Ranger.
+  aur:
+    use: yay
+    name: ranger
+    state: present
+
+- name: Install uberzug
+  pip:
+    name: ueberzug
+
+- name: Check if 'Ranger devicons' is installed.
+  stat: "path=~/.config/ranger/plugins/ranger_devicons"
+  register: rg_devicons_stat
+
+- name: Install 'Ranger devicons'.
+  git: 
+    repo: "https://github.com/alexanderjeurissen/ranger_devicons" 
+    dest: "{{ dotfiles_user_home }}/.config/ranger/plugins/ranger_devicons"
+    version: main
+    update: yes
+  when: not rg_devicons_stat.stat.exists
+
+- name: Check if rc.conf exists.
+  stat: path="{{ dotfiles_user_home }}/.config/ranger/rc.conf"
+  register: rc_stat
+
+- name: Backup rc.conf.
+  command: mv ~/.config/ranger/rc.conf ~/.config/ranger/rc.conf.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/ranger/rc.conf.bak"
+  when: rc_stat.stat.exists
+
+
+- name: Symlink rc.conf.
+  file:
+    src: "{{ dotfiles_home }}/roles/ranger/files/rc.conf"
+    dest: "{{ dotfiles_user_home }}/.config/ranger/rc.conf"
+    state: link
