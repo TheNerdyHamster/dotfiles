@@ -1,0 +1,21 @@
+- name: Install Alacritty.
+  aur:
+    use: yay
+    name: alacritty
+    state: present
+
+- name: Check if alacritty.yml exists.
+  stat: path="{{ dotfiles_user_home }}/.config/alacritty/alacritty.yml"
+  register: alacritty_stat
+
+- name: Backup alacritty.yml.
+  command: mv ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/alacritty/alacritty.yml.bak"
+  when: alacritty_stat.stat.exists
+
+- name: Symlink alacritty.yml.
+  file:
+    src: "{{ dotfiles_home }}/roles/alacritty/files/alacritty.yml"
+    dest: "{{ dotfiles_user_home }}/.config/alacritty/alacritty.yml"
+    state: link

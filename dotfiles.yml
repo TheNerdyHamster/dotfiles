@@ -5,13 +5,17 @@
       tags:
         - git
 
-    #- role: yay
-    #  tags:
-    #    - yay
+    - role: yay
+      tags:
+        - yay
     
     - role: zsh
       tags:
         - zsh
+          
+    - role: alacritty
+      tags:
+        - alacritty
 
     - role: neovim
       tags:
