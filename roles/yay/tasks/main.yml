@@ -13,10 +13,10 @@
     creates: /usr/bin/yay
   when: install_yay
 
-  #- name: Upgrade system.
-  #aur:
-    #  upgrade: yes
-    #when: package_upgrade
+- name: Upgrade system.
+  pacman:
+    update_cache: yes
+    upgrade: yes
 
 - name: Install yay packages.
   aur:
@@ -25,9 +25,8 @@
     state: present
   loop: "{{ packages }}"
 
-  # TODO: Fix uninstallation of packages
-  #- name: Remove yay packages.
-  #aur:
-    #  name: "{{ item }}"
-    #state: absent
-    #loop: "{{ remove_packages }}"
+- name: Remove yay packages.
+  pacman:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ remove_packages }}"
