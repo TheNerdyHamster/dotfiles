@@ -17,6 +17,10 @@
       tags:
         - alacritty
 
+    - role: tmux
+      tags:
+        - tmux
+
     - role: neovim
       tags:
         - neovim
