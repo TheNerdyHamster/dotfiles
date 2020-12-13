@@ -17,6 +17,7 @@
   pacman:
     update_cache: yes
     upgrade: yes
+  become: yes
 
 - name: Install yay packages.
   aur:
@@ -26,7 +27,7 @@
   loop: "{{ packages }}"
 
 - name: Remove yay packages.
-  pacman:
+  community.general.pacman:
     name: "{{ item }}"
     state: absent
   loop: "{{ remove_packages }}"
