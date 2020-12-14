@@ -19,6 +19,7 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
 -- Layout
+import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 
 
@@ -169,7 +170,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -------------
 -- Layouts --
 -------------
-myLayout = spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10 ) True $ 
+myLayout =  spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10) True $
   avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -191,8 +192,8 @@ myLayout = spacingRaw False (Border 10 0 10 0) True (Border 0 10 0 10 ) True $
 myManageHook = composeAll
     [ className =? "MPlayer"            --> doFloat
     , className =? "Gimp"               --> doFloat
+    , className =? "Xmessage"           --> doFloat
     , title     =? "Picture-in-Picture" --> doFloat
-    , className =? "xmessage"           --> doFloat
     , resource  =? "desktop_window"     --> doIgnore
     , resource  =? "kdesktop"           --> doIgnore ]
 
