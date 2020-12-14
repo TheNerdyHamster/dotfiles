@@ -5,13 +5,17 @@
       tags:
         - git
 
-    - role: yay
-      tags:
-        - yay
+    # - role: yay
+    #   tags:
+    #     - yay
     
     - role: zsh
       tags:
         - zsh
+
+    - role: xmonad
+      tags:
+        - xmonad
           
     - role: alacritty
       tags:
@@ -25,22 +29,22 @@
       tags:
         - neovim
 
-    - role: ranger
-      tags:
-        - ranger
+    # - role: ranger
+    #   tags:
+    #     - ranger
 
-    - role: fzf
-      tags:
-        - fzf
+    # - role: fzf
+    #   tags:
+    #     - fzf
 
-    - role: asdf
-      tags:
-        - asdf
+    # - role: asdf
+    #   tags:
+    #     - asdf
 
-    - role: docker
-      tags:
-        - docker
+    # - role: docker
+    #   tags:
+    #     - docker
 
-    - role: go
-      tags:
-        - go
+    # - role: go
+    #   tags:
+    #     - go
