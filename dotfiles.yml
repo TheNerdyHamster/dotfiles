@@ -29,9 +29,9 @@
       tags:
         - neovim
 
-    # - role: ranger
-    #   tags:
-    #     - ranger
+    - role: lf
+      tags:
+        - lf
 
     # - role: fzf
     #   tags:
