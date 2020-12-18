@@ -1,7 +1,7 @@
 # Base
 alias bc="bc -l"
 alias c="clear"
-alias cd="cd & ls"
+#alias cd="cd & ls"
 alias ls="ls -A --color=auto"
 
 # Editor
