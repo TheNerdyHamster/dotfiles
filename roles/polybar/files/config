@@ -1,0 +1,191 @@
+#!/bin/sh
+[settings]
+screenchange-reload = true
+
+[globa/wm]
+margin-top 0
+margin-bottom 0
+
+[colors]
+background = #323232
+background-alt = #4A4A4A
+foreground = #F4F4F4
+foreground-alt = #000
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+underline-1 = #2FAFFF
+light-purple = #AA95EE
+light-pink = #ED89DE
+light-blue = #2FAFFF
+light-green = #00B4B1 
+
+[bar/panel]
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+fixed-center = true
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #000000
+
+padding-top = 5
+padding-left = 1
+padding-right = 1
+
+module-margin = 1
+
+font-0 = "Cantarell:size=10:weight=bold;2"
+font-1 = "Font Awesome:size=10;2"
+font-2 = "Material Icons:size=12;5"
+font-3 = "Fira Mono:size=8;-3"
+
+modules-left = bspwm
+modules-center = spotify
+modules-right = xkeyboard memory cpu battery temperature date 
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix-font = 1
+format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-underline = ${colors.underline-1}
+
+label-layout =  %layout%
+;label-layout-underline = ${colors.underline-1}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+;label-indicator-underline = ${colors.underline-1}
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %icon%
+label-focused-foreground = ${colors.light-green}
+;label-focused-underline= ${colors.underline-1}
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.light-pink}
+label-occupied-padding = 2
+
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %icon%
+;label-empty-foreground = ${colors.background-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+;label-separator = 
+
+; ws-icon-0 = I; 
+; ws-icon-1 = II; 
+; ws-icon-2 = III;   
+; ws-icon-3 = IV; 
+; ws-icon-4 = V; 
+; ws-icon-5 = VI;   
+
+ws-icon-default = 
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/scripts/spotify.sh
+interval = 3
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <label>
+;format-underline = ${colors.underline-1}
+; click-left = emacsclient -e "(proced)"
+label = %percentage:2%%
+; ramp-coreload-spacing = 0
+; ramp-coreload-0 = ▁
+; ramp-coreload-0-foreground = ${colors.foreground-alt}
+; ramp-coreload-1 = ▂
+; ramp-coreload-2 = ▃
+; ramp-coreload-3 = ▄
+; ramp-coreload-4 = ▅
+; ramp-coreload-5 = ▆
+; ramp-coreload-6 = ▇
+
+[module/memory]
+type = internal/memory
+interval = 2
+;format-underline = ${colors.underline-1}
+label = %percentage_used%%
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = %l:%M %p
+time-alt = %H:%M
+
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.underline-1}
+
+label = %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+label-charging = %percentage%%
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = ${colors.underline-1}
+
+label-discharging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+
+format-full = <ramp-capacity> <label-full>
+format-full-foreground = ${colors.light-green}
+;format-full-underline = ${colors.light-green}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+;format-underline = ${colors.underline-1}
+format-warn = <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%!
+label-warn-foreground = ${colors.secondary}
