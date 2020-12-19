@@ -2,9 +2,9 @@
 [settings]
 screenchange-reload = true
 
-[globa/wm]
-margin-top 0
-margin-bottom 0
+[global/wm]
+margin-top = 0
+margin-bottom = 0
 
 [colors]
 background = #323232
@@ -20,7 +20,7 @@ light-pink = #ED89DE
 light-blue = #2FAFFF
 light-green = #00B4B1 
 
-[bar/panel]
+[bar/bar]
 width = 100%
 height = 24
 offset-x = 0
@@ -189,3 +189,11 @@ format-warn = <label-warn>
 label = %temperature-c%
 label-warn = %temperature-c%!
 label-warn-foreground = ${colors.secondary}
+
+[module/pacman]
+type = custom/script
+exec = pacman -Q | wc -l
+interval = 600
+format-prefix = "📦 "
+click-left = kitty -e what_i_got &
+format-padding = 1
