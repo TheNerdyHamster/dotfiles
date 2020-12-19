@@ -1,21 +1,29 @@
-- name: Install lf.
+- name: Install polybar.
   aur:
     use: yay
-    name: lf
+    name: polybar
     state: present
 
-- name: Check if lfrc exists.
+- name: Check if polybar config exists.
   stat: path="{{ dotfiles_user_home }}/.config/polybar/config"
   register: polybar_stat
 
-- name: Backup lfrc.
-  command: mv ~/.config/lf/lfrc ~/.config/lf/lfrc.bak
+- name: Backup polybar.
+  command: mv ~/.config/polybar/config ~/.config/polybar/config.bak
   args:
-    creates: "{{ dotfiles_user_home }}/.config/lf/lfrc.bak"
+    creates: "{{ dotfiles_user_home }}/.config/polybar/config.bak"
   when: polybar_stat.stat.exists
 
-- name: Symlink lfrc.
+- name: Symlink polybar config.
   file:
-    src: "{{ dotfiles_home }}/roles/lf/files/lfrc"
-    dest: "{{ dotfiles_user_home }}/.config/lf/lfrc"
+    src: "{{ dotfiles_home }}/roles/polybar/files/config"
+    dest: "{{ dotfiles_user_home }}/.config/polybar/config"
     state: link
+    force: yes
+
+- name: Symlink launch.
+  file:
+    src: "{{ dotfiles_home }}/roles/polybar/files/launch.sh"
+    dest: "{{ dotfiles_user_home }}/.config/polybar/launch.sh"
+    state: link
+    force: yes
