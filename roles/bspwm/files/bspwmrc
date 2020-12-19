@@ -6,11 +6,18 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 kill-all "picom"
 picom &
 feh --bg-fill /usr/share/backgrounds/archlinux/snow.jpg &
+~/.config/polybar/launch.sh &
+
 
 wmname LG3D
 
 ## -- Monitors -- ##
-bspc monitor -d I II III IV V VI VII VIII IX X
+if [[ $(bspc query -M --names | grep 2) == "DP2" ]]; then
+    bspc monitor eDP1 -d 1 2 
+    bspc monitor DP2  -d 3 4 5 6 7
+else 
+    bspc monitor -d 1 2 3 4 5 6 7
+fi
 
 ## -- Global settings -- ##
 bspc config automatic_scheme alternate
