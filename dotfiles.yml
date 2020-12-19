@@ -13,9 +13,13 @@
       tags:
         - zsh
 
-    - role: xmonad
+    - role: bspwm
       tags:
-        - xmonad
+        - bspwm
+
+    - role: polybar
+      tags:
+        - polybar
           
     - role: alacritty
       tags:
