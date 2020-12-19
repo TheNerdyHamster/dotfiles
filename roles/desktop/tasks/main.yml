@@ -15,7 +15,7 @@
     creates: "{{ dotfiles_user_home }}/.config/polybar.bak"
   when: polybar_stat.stat.exists
   
-- name: ansible create directory example
+- name: Create polybar directory.
   file:
     path: "{{ dotfiles_user_home }}/.config/polybar"
     state: directory
@@ -35,4 +35,45 @@
     mode: '754'
 
 ## AwesomeWM ##
+- name: Install AwesomeWM.
+  aur:
+    use: yay
+    name: awesome
+    state: present
 
+- name: Check if awesome config exists.
+  stat: path="{{ dotfiles_user_home }}/.config/awesome"
+  register: awesome_stat
+
+- name: Backup awesome.
+  command: mv ~/.config/awesome ~/.config/awesome.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/awesome.bak"
+  when: awesome_stat.stat.exists
+
+- name: Create awesome directory.
+  file:
+    path: "{{ dotfiles_user_home }}/.config/awesome"
+    state: directory
+
+- name: Symlink awesome.
+  file:
+    src: "{{ dotfiles_home }}/roles/desktop/files/awesome"
+    dest: "{{ dotfiles_user_home }}/.config/awesome"
+    state: link
+    force: yes
+
+- name: Manage permissions Awesome.
+  file:
+    path: "{{ dotfiles_user_home }}/.config/awesome"
+    state: directory
+    recurse: yes
+    mode: '754'
+
+- name: Link xinitrc.
+  file:
+    src: "{{ dotfiles_user_home }}/.config/awesome/xinitrc"
+    dest: "{{ dotfiles_user_home }}/.xinitrc"
+    state: link
+    mode: '754'
+    force: yes
