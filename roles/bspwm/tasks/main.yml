@@ -1,0 +1,23 @@
+- name: Install base packages for bspwm.
+  aur:
+    use: yay
+    name: 
+      - bspwm
+      - sxhkd
+    state: present
+
+- name: Symlink bspwmrc.
+  file:
+    src: "{{ dotfiles_home }}/roles/bspwm/files/bspwmrc"
+    dest: "{{ dotfiles_user_home }}/.config/bspwm/bspwmrc"
+    state: link
+    mode: u=rwx,g=rx,o=rx
+    force: yes
+
+- name: Symlink sxhkdrc.
+  file:
+    src: "{{ dotfiles_home }}/roles/bspwm/files/sxhkdrc"
+    dest: "{{ dotfiles_user_home }}/.config/sxhkd/sxhkdrc"
+    state: link
+    mode: u=rwx,g=rx,o=rx
+    force: yes
