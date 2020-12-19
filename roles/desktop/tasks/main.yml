@@ -1,0 +1,38 @@
+## Polybar ##
+- name: Install polybar.
+  aur:
+    use: yay
+    name: polybar
+    state: present
+
+- name: Check if polybar config exists.
+  stat: path="{{ dotfiles_user_home }}/.config/polybar"
+  register: polybar_stat
+
+- name: Backup polybar.
+  command: mv ~/.config/polybar ~/.config/polybar.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/polybar.bak"
+  when: polybar_stat.stat.exists
+  
+- name: ansible create directory example
+  file:
+    path: "{{ dotfiles_user_home }}/.config/polybar"
+    state: directory
+
+- name: Symlink polybar.
+  file:
+    src: "{{ dotfiles_home }}/roles/desktop/files/polybar"
+    dest: "{{ dotfiles_user_home }}/.config/polybar"
+    state: link
+    force: yes
+
+- name: Managed permissions polybar
+  file:
+    path: "{{ dotfiles_user_home }}/.config/polybar"
+    state: directory
+    recurse: yes
+    mode: '754'
+
+## AwesomeWM ##
+
