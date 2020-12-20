@@ -48,9 +48,8 @@ font-1 = "Font Awesome:size=10;2"
 font-2 = "Material Icons:size=12;5"
 font-3 = "Fira Mono:size=8;-3"
 
-modules-left = bspwm
 modules-center = date
-modules-right = pacman xkeyboard memory cpu battery temperature
+modules-right = xkeyboard memory cpu battery temperature
 
 tray-position = right
 tray-padding = 2
@@ -72,38 +71,6 @@ label-layout =  %layout%
 label-indicator-padding = 2
 label-indicator-margin = 1
 ;label-indicator-underline = ${colors.underline-1}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %icon%
-label-focused-foreground = ${colors.light-green}
-;label-focused-underline= ${colors.underline-1}
-label-focused-padding = 2
-
-label-occupied = %icon%
-label-occupied-foreground = ${colors.light-pink}
-label-occupied-padding = 2
-
-label-urgent = %icon%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %icon%
-;label-empty-foreground = ${colors.background-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-;label-separator = 
-
-; ws-icon-0 = I; 
-; ws-icon-1 = II; 
-; ws-icon-2 = III;   
-; ws-icon-3 = IV; 
-; ws-icon-4 = V; 
-; ws-icon-5 = VI;   
-
-ws-icon-default = 
 
 [module/spotify]
 type = custom/script
@@ -131,7 +98,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 ;format-underline = ${colors.underline-1}
-label = %percentage_used%%
+label =  %percentage_used%%
 
 [module/date]
 type = internal/date
@@ -181,6 +148,5 @@ animation-charging-framerate = 750
 type = custom/script
 exec = pacman -Q | wc -l
 interval = 600
-format-prefix = "📦 "
-click-left = kitty -e what_i_got &
+format-prefix = "Packages Installed: "
 format-padding = 1
