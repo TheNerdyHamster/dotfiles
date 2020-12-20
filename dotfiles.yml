@@ -13,17 +13,9 @@
       tags:
         - zsh
 
-    - role: bspwm
+    - role: desktop
       tags:
-        - bspwm
-
-    - role: polybar
-      tags:
-        - polybar
-          
-    - role: alacritty
-      tags:
-        - alacritty
+        - desktop
 
     - role: tmux
       tags:
