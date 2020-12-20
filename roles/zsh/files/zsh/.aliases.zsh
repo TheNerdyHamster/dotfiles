@@ -19,6 +19,8 @@ alias ports="netstat -tulanp"
 # Utils
 alias connjabra="bluetoothctl connect 70:BF:92:D1:07:D3"
 alias discjabra="bluetoothctl disconnect 70:BF:92:D1:07:D3"
+alias cpic="feh --bg-fill --randomize /usr/share/backgrounds/archlinux"
 alias what_i_got="pacman -Qqe | fzf"
 
 alias ping="ping -c 5"
+
