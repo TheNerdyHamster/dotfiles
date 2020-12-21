@@ -24,5 +24,3 @@ source ~/.zsh/.exports.zsh
 
 # Star ship
 eval "$(starship init zsh)"
-
-# source ~/.zsh/.fzf.zsh
