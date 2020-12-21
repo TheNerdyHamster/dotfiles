@@ -4,6 +4,12 @@
     name: git
     state: present
 
+- name: Install diff-so-fancy.
+  aur:
+    use: yay
+    name: diff-so-fancy
+    state: present
+
 - name: Make sure global gitignore file is up to date.
   file:
     src: "{{ dotfiles_home }}/roles/git/files/gitignore_global.link"
