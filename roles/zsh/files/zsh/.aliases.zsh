@@ -10,8 +10,6 @@ alias vim=nvim
 alias edit=nvim
 alias vis='nvim "+set si"'
 
-
-
 # Information
 alias myip="curl http://ipecho.net/plain; echo"
 alias ports="netstat -tulanp"
