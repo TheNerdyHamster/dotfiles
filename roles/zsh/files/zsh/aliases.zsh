@@ -10,6 +10,8 @@ alias vim=nvim
 alias edit=nvim
 alias vis='nvim "+set si"'
 
+# Shortcuts
+alias dfiles="cd ~/Projects/dotfiles"
 # Information
 alias myip="curl http://ipecho.net/plain; echo"
 alias ports="netstat -tulanp"
