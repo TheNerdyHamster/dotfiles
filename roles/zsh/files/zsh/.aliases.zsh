@@ -17,6 +17,7 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias ports="netstat -tulanp"
 
 # Utils
+alias szsh='source ~/.zshrc'
 alias connjabra="bluetoothctl connect 70:BF:92:D1:07:D3"
 alias discjabra="bluetoothctl disconnect 70:BF:92:D1:07:D3"
 alias cpic="feh --bg-fill --randomize /usr/share/backgrounds/archlinux"
