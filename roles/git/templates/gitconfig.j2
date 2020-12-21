@@ -10,11 +10,26 @@
     branch = auto
     ui = true
 [alias]
+    s = status
+    d = diff
+    co = checkout
+    br = branch
+    last = log -1 HEAD
+    cane = commit --amend --no-edit
+    lo = log --oneline -n 10
+    pr = pull --rebase
+    cm = commit
+    rh = reset --hard
+    a = add
+    al = add .
+    ap = add -p
+    pu = push
+    loa = log --oneline --all --decorate --graph
     patch = !git --no-pager diff --no-color
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
-	pager = diff-so-fancy | less --tabs=2 -RFXS --pattern '^(Date|added|deleted|modified): '
+	pager = diff-so-fancy | less --tabs=2 -RFXS
 [commit]
     gpgSign = {{ git_sign_commits }}
 [color "diff-highlight"]
