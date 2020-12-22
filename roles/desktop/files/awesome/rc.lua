@@ -427,5 +427,5 @@ beautiful.useless_gap = 5
 
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("xss-lock -- slock")
-awful.spawn.with_shell("feh --bg-fill --randomize /usr/share/backgrounds/archlinux")
+awful.spawn.with_shell("feh --bg-fill --randomize ~/.config/wallpapers")
 awful.spawn.with_shell("~/.config/polybar/launch.sh")
