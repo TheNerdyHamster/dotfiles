@@ -33,6 +33,10 @@
       tags:
         - lf
 
+    - role: obs
+      tags:
+        - obs
+
     # - role: fzf
     #   tags:
     #     - fzf
