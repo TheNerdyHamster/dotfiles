@@ -2,7 +2,7 @@
 - name: Install obs.
   aur:
     use: yay
-    name: obs
+    name: obs-studio
     state: present
 
 - name: Install v4l2sink and deps.
@@ -16,3 +16,4 @@
   modprobe:
     name: v4l2loopback
     state: present
+  become: yes
