@@ -23,8 +23,8 @@
 - name: Symlink polybar.
   file:
     src: "{{ dotfiles_home }}/roles/desktop/files/polybar"
-    dest: "{{ dotfiles_user_home }}/.config/polybar"
-    state: link
+    dest: "{{ dotfiles_user_home }}/.config/polybar" 
+    state: link 
     force: yes
 
 - name: Managed permissions polybar
@@ -34,46 +34,128 @@
     recurse: yes
     mode: '754'
 
-## AwesomeWM ##
-- name: Install AwesomeWM.
+## BSPWM ##
+
+- name: Install bspwm.
   aur:
     use: yay
-    name: awesome
+    name: bspwm
     state: present
 
-- name: Check if awesome config exists.
-  stat: path="{{ dotfiles_user_home }}/.config/awesome"
-  register: awesome_stat
+- name: Check if bspwm config exists.
+  stat: path="{{ dotfiles_user_home }}/.config/bspwm"
+  register: bspwm_stat
 
-- name: Backup awesome.
-  command: mv ~/.config/awesome ~/.config/awesome.bak
+- name: Backup bspwm.
+  command: mv ~/.config/bspwm ~/.config/bspwm.bak
   args:
-    creates: "{{ dotfiles_user_home }}/.config/awesome.bak"
-  when: awesome_stat.stat.exists
+    creates: "{{ dotfiles_user_home }}/.config/bspwm.bak"
+  when: bspwm_stat.stat.exists
 
-- name: Create awesome directory.
+- name: Create bspwm directory.
   file:
-    path: "{{ dotfiles_user_home }}/.config/awesome"
+    path: "{{ dotfiles_user_home }}/.config/bspwm"
     state: directory
 
-- name: Symlink awesome.
+- name: Symlink bspwmrc.
   file:
-    src: "{{ dotfiles_home }}/roles/desktop/files/awesome"
-    dest: "{{ dotfiles_user_home }}/.config/awesome"
+    src: "{{ dotfiles_home }}/roles/desktop/files/bspwm"
+    dest: "{{ dotfiles_user_home }}/.config/bspwm"
     state: link
     force: yes
 
-- name: Manage permissions Awesome.
+- name: Managed permissions bspwm.
   file:
-    path: "{{ dotfiles_user_home }}/.config/awesome"
+    path: "{{ dotfiles_user_home }}/.config/bspwm"
     state: directory
     recurse: yes
     mode: '754'
 
 - name: Link xinitrc.
   file:
-    src: "{{ dotfiles_user_home }}/.config/awesome/xinitrc"
+    src: "{{ dotfiles_user_home }}/.config/bspwm/xinitrc"
     dest: "{{ dotfiles_user_home }}/.xinitrc"
     state: link
     mode: '754'
     force: yes
+
+## sxhkd ##
+
+- name: Install sxhkd.
+  aur:
+    use: yay
+    name: sxhkd
+    state: present
+
+- name: Check if sxhkd config exists.
+  stat: path="{{ dotfiles_user_home }}/.config/sxhkd"
+  register: sxhkd_stat
+
+- name: Backup sxhkd.
+  command: mv ~/.config/sxhkd ~/.config/sxhkd.bak
+  args:
+    creates: "{{ dotfiles_user_home }}/.config/sxhkd.bak"
+  when: sxhkd_stat.stat.exists
+
+- name: Create sxhkd directory.
+  file:
+    path: "{{ dotfiles_user_home }}/.config/sxhkd"
+    state: directory
+
+- name: Symlink sxhkd.
+  file:
+    src: "{{ dotfiles_home }}/roles/desktop/files/sxhkd"
+    dest: "{{ dotfiles_user_home }}/.config/sxhkd"
+    state: link
+    force: yes
+
+- name: Managed permissions sxhkd.
+  file:
+    path: "{{ dotfiles_user_home }}/.config/sxhkd"
+    state: directory
+    recurse: yes
+    mode: '754'
+
+## AwesomeWM ##
+# - name: Install AwesomeWM.
+#   aur:
+#     use: yay
+#     name: awesome
+#     state: present
+
+# - name: Check if awesome config exists.
+#   stat: path="{{ dotfiles_user_home }}/.config/awesome"
+#   register: awesome_stat
+
+# - name: Backup awesome.
+#   command: mv ~/.config/awesome ~/.config/awesome.bak
+#   args:
+#     creates: "{{ dotfiles_user_home }}/.config/awesome.bak"
+#   when: awesome_stat.stat.exists
+
+# - name: Create awesome directory.
+#   file:
+#     path: "{{ dotfiles_user_home }}/.config/awesome"
+#     state: directory
+
+# - name: Symlink awesome.
+#   file:
+#     src: "{{ dotfiles_home }}/roles/desktop/files/awesome"
+#     dest: "{{ dotfiles_user_home }}/.config/awesome"
+#     state: link
+#     force: yes
+
+# - name: Manage permissions Awesome.
+#   file:
+#     path: "{{ dotfiles_user_home }}/.config/awesome"
+#     state: directory
+#     recurse: yes
+#     mode: '754'
+
+# - name: Link xinitrc.
+#   file:
+#     src: "{{ dotfiles_user_home }}/.config/awesome/xinitrc"
+#     dest: "{{ dotfiles_user_home }}/.xinitrc"
+#     state: link
+#     mode: '754'
+#     force: yes
