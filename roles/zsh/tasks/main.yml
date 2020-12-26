@@ -12,13 +12,13 @@
   raw: "sh -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
   when: not oh_my_zsh_stat.stat.exists
 
-- name: Check if fast-syntax-highlighting is installed.
-  stat: "path=~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting"
-  register: fast_syntax
-
-- name: Install 'fast-syntax-highlighting'.
-  raw: git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-  when: not fast_syntax.stat.exists
+- name: Install zsh plugins.
+  aur:
+    use: yay
+    name:
+      - zsh-you-should-use
+      - zsh-fast-syntax-highlighting
+    state: present
 
 - name: Check if .zshrc exists.
   stat: path="{{ dotfiles_user_home }}/.zshrc"
@@ -40,6 +40,12 @@
   file:
     src: "{{ dotfiles_home }}/roles/zsh/files/zshrc"
     dest: "{{ dotfiles_user_home }}/.zshrc"
+    state: link
+
+- name: Symlink .zprofile.
+  file:
+    src: "{{ dotfiles_home }}/roles/zsh/files/zprofile"
+    dest: "{{ dotfiles_user_home }}/.zprofile"
     state: link
 
 - name: Check if .zsh exists.

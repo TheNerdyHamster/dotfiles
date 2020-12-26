@@ -1,3 +1,5 @@
+neofetch
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -10,14 +12,19 @@ HYPHEN_INSENSITIVE="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git fast-syntax-highlighting ssh-agent sudo tmux)
+plugins=(git fast-syntax-highlighting ssh-agent sudo)
 
+# Suggestion of alias for command.
+source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh 2>/dev/null
+# Search repos for programs not installed.
+source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 # Source 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.zsh/aliases.zsh
-source ~/.zsh/completion.zsh
-source ~/.zsh/exports.zsh
+for f in ~/.zsh/*; do source "$f"; done
+# source ~/.zsh/aliases.zsh
+# source ~/.zsh/completion.zsh
+# source ~/.zsh/exports.zsh
 
 # asdf
 . $HOME/.asdf/asdf.sh
