@@ -9,12 +9,12 @@
       tags: always
       pacman:
         update_cache: yes
-      changed_when: false
-      when: ansible_facts.ansible_distribution = "Archlinux"
+      changed_when: False
+      when: ansible_distribution == "Archlinux"
 
     - name: pre-run | [Debian...] update package cache
       tags: always
       apt:
         update_cache: yes
-      changed_when: false
-      when: ansible_facts.ansible_distribution in ["Debian", "Ubuntu"]
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu"]
