@@ -10,7 +10,7 @@
   user:
     name: thenerdyhamster
     group: thenerdyhamster
-    groups: [ansible,docker,{{ sudo_group }}]
+    groups: adm,ansible,{{ sudo_group }}
     state: present
     comment: "Leo Ronnebro"
     password: "{{ tnh_passwd }}"
