@@ -1,0 +1,27 @@
+---
+- name: \[users/thenerdyhamster] create group
+  tags: groups,thenerdyhamster,users
+  group:
+    name: thenerdyhamster
+    state: present
+
+- name: \[users/thenerdyhamster] create user
+  tags: sudo,thenerdyhamster,users
+  user:
+    name: thenerdyhamster
+    group: thenerdyhamster
+    groups: [ansible,docker,{{ sudo_group }}]
+    state: present
+    comment: "Leo Ronnebro"
+    password: "{{ tnh_passwd }}"
+    shell: /bin/bash
+
+- name: \[users/thenerdyhamster] add sudoers file.
+  tags: sudo,thenerdyhamster,users,system
+  copy:
+    src: users/sudoers_thenerdyhamster
+    dest: /etc/sudoers.d/thenerdyhamster
+    owner: root
+    group: root
+    mode: 0440
+
