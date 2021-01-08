@@ -11,7 +11,10 @@ alias edit=nvim
 alias vis='nvim "+set si"'
 
 # Shortcuts
-alias dfiles="cd ~/Projects/dotfiles"
+alias dfiles="nvim ~/Projects/dotfiles"
+alias viconf="nvim ~/.config/nvim"
+alias ctrlc='xclip -selection c'
+alias ctrlv='xclip -selection c -o'
 
 # Information
 alias myip="curl http://ipecho.net/plain; echo"
