@@ -1,0 +1,20 @@
+---
+- name: [Debian] update cache.
+  apt:
+    update_cache: yes
+
+- name: [Arch] update cache.
+  pacman:
+    update_cache: yes
+
+- name: restart sshd service
+  service: "{{ openssh_service }}"
+    state: restarted
+
+- name: update neovim perms.
+  file:
+    path: /home/thenerdyhamster/.config/neovim
+    owner: thenerdyhamster
+    group: thenerdyhamster
+    recurse: true
+
