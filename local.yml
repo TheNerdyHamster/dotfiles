@@ -1,5 +1,6 @@
 ---
 - name: TNH Dotfiles installation for servers and desktop environments.
+  hosts: all
   tags: always
   become: true
 

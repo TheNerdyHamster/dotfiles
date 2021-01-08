@@ -1,5 +1,4 @@
-[local]
-localhost
+[server]
+tnh.tnh
 
-[local:vars]
-ansible_connection=local
+[workstation]
