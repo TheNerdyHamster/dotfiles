@@ -1,6 +1,5 @@
 ---
-- name: Setup local workstation with TNH dotfiles.
-  hosts: localhost
+- hosts: local
   become: true
 
   tasks:
