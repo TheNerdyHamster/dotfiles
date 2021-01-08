@@ -8,7 +8,8 @@
     update_cache: yes
 
 - name: Global | restart sshd service
-  service: "{{ openssh_service }}"
+  service:
+    name: "{{ openssh_service }}"
     state: restarted
 
 - name: Global | update neovim perms
