@@ -6,7 +6,7 @@
     password_lock: yes
 
 - name: users - root | create config directories
-  tags: users,root,dotfiles,zsh
+  tags: users,root,dotfiles,vim
   file:
     path: /root/{{ item.dir }}
     state: directory
@@ -14,9 +14,11 @@
     group: root
     mode: 0700
   with_items:
-    - { dir: '.zsh' }
+    - { dir: '.config' }
+    - { dir: '.config/nvim' }
 
 - name: users - root | copy dotfiles
+  tags: users,root,dotfiles
   copy:
     src: users/root/{{ item.src }}
     dest: /root/{{ item.dest }}
