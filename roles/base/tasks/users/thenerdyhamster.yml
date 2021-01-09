@@ -10,7 +10,7 @@
   user:
     name: thenerdyhamster
     group: thenerdyhamster
-    groups: {{ sudo_group }}
+    groups: "{{ sudo_group }}"
     state: present
     comment: "Leo Ronnebro"
     password: "{{ tnh_passwd }}"
