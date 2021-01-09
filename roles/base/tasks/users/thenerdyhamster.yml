@@ -36,14 +36,14 @@
   with_items:
     - { dir: '/home/thenerdyhamster/.ssh' }
 
-- name: users - thenerdyhamster | add pub key
-  tags: users,thenerdyhamster,dotfiles,ssh,keys
-  authorized_key:
-    user: thenerdyhamster
-    state: present
-    key: "{{ item }}"
-  with_items:
-    - users/thenerdyhamster/ssh/thenerdyhamster_id_ed25519.pub
+# - name: users - thenerdyhamster | add pub key
+#   tags: users,thenerdyhamster,dotfiles,ssh,keys
+#   authorized_key:
+#     user: thenerdyhamster
+#     state: present
+#     key: "{{ item }}"
+#   with_items:
+#     - users/thenerdyhamster/ssh/thenerdyhamster_id_ed25519.pub
 
 - name: users - thenerdyhamster | create dotfiles directories
   tags: users,thenerdyhamster,dotfiles,nvim,zsh
