@@ -3,3 +3,4 @@
 
 - block:
   - import_tasks: users/thenerdyhamster.yml
+  - import_tasks: users/root.yml
