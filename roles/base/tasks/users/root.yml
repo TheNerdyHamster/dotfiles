@@ -1,0 +1,31 @@
+---
+- name: users - root | ensure root account is locked
+  tags: users,root,security
+  user:
+    name: root
+    password_lock: yes
+
+- name: users - root | create config directories
+  tags: users,root,dotfiles,zsh
+  file:
+    path: /root/{{ item.dir }}
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  with_items:
+    - { dir: '.zsh' }
+
+- name: users - root | copy dotfiles
+  copy:
+    src: users/root/{{ item.src }}
+    dest: /root/{{ item.dest }}
+    owner: root
+    group: root
+    mode: 0600
+  with_items:
+    - { src: 'bash/bashrc', dest: '.bashrc' }
+    - { src: 'bash/bash_profile', dest: '.bash_profile' }
+    - { src: 'bash/profile', dest: '.profile' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+
