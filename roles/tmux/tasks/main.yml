@@ -1,0 +1,5 @@
+- name: Install tmux.
+  aur:
+    use: yay
+    name: tmux
+    state: present
