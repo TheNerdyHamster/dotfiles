@@ -1,0 +1,12 @@
+
+
+dmenu
+
+emacs
+
+picom
+
+spotify
+
+zathura
+
