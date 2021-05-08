@@ -1,3 +1,0 @@
-[submodule "roles/neovim/files/repo"]
-	path = roles/neovim/files/repo
-	url = git@github.com:TheNerdyHamster/TNH-nvim.git
