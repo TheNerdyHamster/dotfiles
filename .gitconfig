@@ -1,3 +1,6 @@
+[includeIf "gitdir:~/.dotfiles/"]
+  path = ~/.gitconfig-personal
+
 [includeIf "gitdir:~/Projects/personal/"]
   path = ~/.gitconfig-personal
 
