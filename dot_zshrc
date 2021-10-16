@@ -1,19 +1,93 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+# Enable colors
+autoload -U colors && colors
+
+# Unset beep
+unsetopt beep
+
+# History
 HISTSIZE=1000
 SAVEHIST=1000
-EDITOR=nvim
-unsetopt beep
+HISTFILE=~/.histfile
+setopt HIST_IGNORE_ALL_DUPS
+
+## Exports
+export LANG=en_US.UTF-8
+export EDITOR=nvim
+export VISUAL=nvim
+export GPG_TTY=`tty`
+
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+# Completion
 zstyle :compinstall filename '/home/letnh/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
+# ALIASES
+
+# Terminal
+alias c='clear'
+alias ping='ping -c 5'
+alias szsh='source ~/.zshrc'
+
+# Vim
+alias vi='nvim'
+alias vim='nvim'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Changing "ls" to "exa"
+alias ls='exa --icons --color=always --group-directories-first' # my preferred listing
+alias la='exa -a  --icons --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l  --icons --color=always --group-directories-first'  # long format
+alias lla='exa -al --icons --color=always --group-directories-first'  # long format
+alias lt='exa -aT --icons --color=always --group-directories-first' # tree listing
+
+# pacman and paru
+alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
+alias parsua='paru -Sua --noconfirm'              # update only AUR pkgs
+alias parsyu='paru -Syu --noconfirm'              # update standard pkgs and AUR pkgs
+alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # remove orphaned packages
+
+# Utils
+alias myip='curl http://ipecho.net/plain; echo'
+alias ports='netstat -tulanp'
+
+# Flags
+alias free='free -m'
+alias rm='rm -I'
+
+# Get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+## Colors in less and man pages
+# Start blinking
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 4) # Blue
+# Start bold
+export LESS_TERMCAP_md=$(tput bold; tput setaf 4) # Blue
+# Start standout
+export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 6) # Cyan
+# End standout
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+# Start underline
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 5) # Magenta
+# End bold, blinking, standout, underline
+export LESS_TERMCAP_me=$(tput sgr0)
+
+# Functions
+function re() {
+   paru -Qq | fzf -q "$1" -m --preview 'paru -Qi {1}' | xargs -ro paru -Rns
+}
+
+# Starship
 eval "$(starship init zsh)"
 
+# HCLOUD Completion
 source $(hcloud completion zsh)
 alias luamake=/home/letnh/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
