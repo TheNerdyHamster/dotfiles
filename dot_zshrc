@@ -1,6 +1,9 @@
 # Enable colors
 autoload -U colors && colors
 
+# Start ssh-agent
+eval $(ssh-agent)
+
 # Unset beep
 unsetopt beep
 
