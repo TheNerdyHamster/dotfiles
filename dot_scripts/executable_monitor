@@ -1,0 +1,5 @@
+#!/bin/sh
+screen_scripts_path="$HOME/.screenlayout/"
+
+find $screen_scripts_path -name "*.sh" -type f | awk -F'/' '{ print $(NF) }' | dmenu -l 10 -p "Choose screen layout" | xargs echo 'This is $1 screen' sh
+#man -k . | dmenu -l 20 | awk '{print $1}' | xargs -r $TERMINAL -e man

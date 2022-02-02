@@ -1,0 +1,19 @@
+#!/bin/sh
+subject=$(ykman oath accounts list | awk -F':' '{ print $1 }' | sort -u | dmenu -l 20 -p "Select subject")
+
+[ -z "$subject" ] && exit
+account=$(ykman oath accounts list | grep "$subject" | dmenu -l 20 -p "Select OTP")
+[ -z "$subject" ] && exit
+
+ykman oath accounts code $account | awk -F' ' '{ print $2 }' | xclip -sel clip
+
+awesome-client '
+  naughty = require("naughty")
+  naughty.notify({
+  title="Copied OTP Code to clipboard",
+  bg="#1572A1",
+  fg="#000000",
+  height="20",
+  position="top_middle"
+  })
+'

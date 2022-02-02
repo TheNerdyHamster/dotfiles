@@ -1,0 +1,2 @@
+#!/bin/sh
+man -k . | dmenu -l 20 | awk '{print $1}' | xargs -r $TERMINAL -e man
