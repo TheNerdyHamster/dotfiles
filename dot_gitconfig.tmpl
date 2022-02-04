@@ -1,43 +1,37 @@
 [user]
   name = Leo Rönnebro
   email = {{ .email }}
-  {{ if .git_gpg }}
-  signingkey = 7BE8284C0425D303
-  {{ end }}
 
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = true
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
 
 [alias]
-    s = status
-    d = diff
-    co = checkout
-    br = branch
-    last = log -1 HEAD
-    cane = commit --amend --no-edit
-    lo = log --oneline -n 10
-    pr = pull --rebase
-    cm = commit
-    rh = reset --hard
-    a = add
-    al = add .
-    ap = add -p
-    pu = push
-    loa = log --oneline --all --decorate --graph
-    patch = !git --no-pager diff --no-color
+  s = status
+  d = diff
+  co = checkout
+  br = branch
+  last = log -1 HEAD
+  cane = commit --amend --no-edit
+  lo = log --oneline -n 10
+  pr = pull --rebase
+  cm = commit
+  rh = reset --hard
+  a = add
+  al = add .
+  ap = add -p
+  pu = push
+  loa = log --oneline --all --decorate --graph
+  patch = !git --no-pager diff --no-color
 
 [core]
-    #excludesfile = ~/.gitignore_global
-    editor = nvim
-	  pager = diff-so-fancy | less --tabs=2 -RFXS
-	  autocrlf = input
-{{ if .git_gpg }}
-[commit]
-    gpgSign = true
-{{ end }}
+  #excludesfile = ~/.gitignore_global
+  editor = nvim
+	pager = diff-so-fancy | less --tabs=2 -RFXS
+	autocrlf = input
+
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -59,8 +53,5 @@
   rulerWidth =
 	first-run = false
 
-[init]
-	defaultBranch = main
-
 [status]
-	submodulesummary = true
+  submodulesummary = true
