@@ -1,0 +1,5 @@
+README.md
+{{- if not .starship_enable }}
+.config/starship.toml
+{{- end }}
+

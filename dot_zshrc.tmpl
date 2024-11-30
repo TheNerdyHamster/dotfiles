@@ -13,3 +13,7 @@ autoload -U compinit && compinit
 
 export EDITOR=nvim
 export VISUAL=nvim
+
+{{- if .starship_enable }}
+eval "$(starship init zsh)"
+{{- end }}

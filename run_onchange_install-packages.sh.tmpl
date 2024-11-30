@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function ensure_brew () {
+	echo "Make sure homebrew is installed..."
+	which -s brew
+	if [[ $? != 0 ]]; then
+		echo "Homebrew not detected, installing homebrew"
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	else
+		echo "Homebrew detected, updating homebrew"
+		brew update
+	fi
+}
+
+function install_packages () {
+	local brews=()
+	local casks=()
+	
+	for pkg in "$@"; do
+		if [[ $pkg == cask* ]]; then
+			casks+=("${pkg#cask }")
+		else
+			brews+=("$pkg")
+		fi
+	done
+	
+	{
+		for brew in "${brews[@]}"; do
+			echo "brew \"$brew\""
+		done
+		for cask in "${casks[@]}"; do
+			echo "cask \"$cask\""
+		done
+	} | brew bundle --file=-
+}
+
+ensure_brew
+
+{{- if .starship_enable }}
+install_packages starship
+{{- end }}
