@@ -1,12 +1,35 @@
 {{- $email := promptStringOnce . "email" "example@example.org" -}}
 {{- $username := promptStringOnce . "username" "example" -}}
-{{- $starship_enable := promptBoolOnce . "starship_enable" "Enable Starship" -}}
+{{- $starship_enable := promptBoolOnce . "starship.enable" "Enable Starship" -}}
 {{- $zinit_enable := promptBoolOnce . "zinit.enable" "Enable Zinit" -}}
 ---
 data:
     email: {{ $email | quote }}
     username: {{ $username | quote }}
-    starship_enable: {{ $starship_enable }}
+    starship:
+        enable: {{ $starship_enable }}
+    default:
+        pkgs:
+            - eza
+            - bat
+            - diff-so-fancy
+            - git-filter-repo
+            - jq
+            - neovim
+            - openssh
+            - git
+            - telnet
+            - felixkratz/formulae/borders
+            - felixkratz/formulae/sketchybar
+            - wget
+            - ykman
+            - cask signal
+            - cask aerospace
+            - cask font-hack-nerd-font
+            - cask font-sf-pro
+            - cask sf-symbols
+            - cask kicad
+            - cask raycast
     zinit:
         enable: {{ $zinit_enable }}
         plugins:

@@ -36,6 +36,10 @@ function install_packages () {
 
 ensure_brew
 
-{{- if .starship_enable }}
+# Starship
+{{- if .starship.enable }}
 install_packages starship
 {{- end }}
+
+# General packages
+install_packages {{ range $index, $pkg := .default.pkgs -}}{{ if $index }} {{ end }}"{{ $pkg }}"{{ end -}}

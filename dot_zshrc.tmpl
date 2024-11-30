@@ -26,6 +26,6 @@ bindkey -e
 source_if_exists $HOME/.zsh/completion
 
 # Shell integrations
-{{- if .starship_enable }}
+{{- if .starship.enable }}
 eval "$(starship init zsh)"
 {{- end }}
