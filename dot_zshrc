@@ -1,0 +1,15 @@
+source_if_exists () {
+	if test -r "$1"; then
+		source "$1"
+	fi
+}
+
+source_if_exists $HOME/.zsh/aliases
+
+autoload -U zmv
+autoload -U promptinit && promptinit
+autoload -U colors && colors
+autoload -U compinit && compinit
+
+export EDITOR=nvim
+export VISUAL=nvim
