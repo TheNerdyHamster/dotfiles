@@ -1,0 +1,20 @@
+{{- $email := promptStringOnce . "email" "example@example.org" -}}
+{{- $username := promptStringOnce . "username" "example" -}}
+{{- $starship_enable := promptBoolOnce . "starship_enable" "Enable Starship" -}}
+{{- $zinit_enable := promptBoolOnce . "zinit.enable" "Enable Zinit" -}}
+---
+data:
+    email: {{ $email | quote }}
+    username: {{ $username | quote }}
+    starship_enable: {{ $starship_enable }}
+    zinit:
+        enable: {{ $zinit_enable }}
+        plugins:
+            - zsh-users/zsh-syntax-highlighting
+            - zsh-users/zsh-completions
+            - zsh-users/zsh-autosuggestions
+        snippets:
+            - OMZP::command-not-found
+            - OMZP::colored-man-pages
+#           - OMZP::macos # Try this sometime
+#           - OMZP::1password # Try this sometime

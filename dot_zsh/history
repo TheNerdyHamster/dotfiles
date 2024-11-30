@@ -1,0 +1,16 @@
+HISTSIZE=50000
+HISTFILE=~/.zsh_history
+SAVEHIST="$(($HISTSIZE * 2))"
+HISTDUP=erase
+
+# History configuration
+setopt extended_history
+setopt hist_ignore_space
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+# setopt hist_save_no_dups
+setopt hist_ignore_dups
+# setopt hist_find_no_dups
+setopt hist_verify
+setopt inc_append_history_time
+# setopt share_history

@@ -5,7 +5,9 @@ source_if_exists () {
 }
 
 # Source
+source_if_exists $HOME/.zsh/zinit
 source_if_exists $HOME/.zsh/aliases
+source_if_exists $HOME/.zsh/history
 
 # Autoload 
 autoload -U zmv
@@ -16,6 +18,12 @@ autoload -U compinit && compinit
 # Export
 export EDITOR=nvim
 export VISUAL=nvim
+
+# Keybindings
+bindkey -e
+
+# Completion
+source_if_exists $HOME/.zsh/completion
 
 # Shell integrations
 {{- if .starship_enable }}

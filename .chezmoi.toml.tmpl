@@ -1,7 +1,0 @@
-{{- $email := promptStringOnce . "email" "example@example.org" -}}
-{{- $username := promptStringOnce . "username" "example" -}}
-
-[data]
-    email = {{ $email | quote }}
-    username = {{ $username | quote }}
-    starship_enable = false

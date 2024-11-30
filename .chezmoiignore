@@ -3,3 +3,6 @@ README.md
 .config/starship.toml
 {{- end }}
 
+{{- if not .zinit.enable }}
+.zsh/zinit
+{{- end }}
