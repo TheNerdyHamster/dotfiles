@@ -59,6 +59,10 @@ brew services start sketchybar
 # WMs
 {{- if eq .wm.type "aerospace" }}
 install_packages "cask nikitabobko/tap/aerospace"
+{{- else if eq .wm.type "yabai" }}
+install_packages "koekeishiya/formulae/yabai" "koekeishiya/formulae/skhd"
+yabai --start-service
+skhd --start-service
 {{- end }}
 
 # General packages

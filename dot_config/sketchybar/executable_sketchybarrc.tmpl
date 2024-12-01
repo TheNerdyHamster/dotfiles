@@ -51,6 +51,8 @@ sketchybar --default "${default[@]}"
 # --- Left side items ---
 {{- if eq .wm.type "aerospace" }}
 source $ITEM_DIR/aerospace_spaces.sh
+{{ else if eq .wm.type "yabai" }}
+source $ITEM_DIR/spaces.sh
 {{- end }}
 source $ITEM_DIR/front_app.sh
 

@@ -6,6 +6,7 @@
 .config/aerospace/**
 {{- end }}
 
-#{{- if ne .wm.type "yabai" }}
-#.config/yabai/**
-#{{- end }}
+{{- if ne .wm.type "yabai" }}
+.config/yabai/**
+.config/skhd/**
+{{- end }}

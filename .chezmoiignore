@@ -16,3 +16,7 @@ README.md
 {{- if ne .wm.type "aerospace" }}
 .config/aerospace
 {{- end }}
+{{- if ne .wm.type "yabai" }}
+.config/yabai
+.config/skhd
+{{- end }}
