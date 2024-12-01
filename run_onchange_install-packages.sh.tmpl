@@ -41,5 +41,20 @@ ensure_brew
 install_packages starship
 {{- end }}
 
+# Sketchybar
+{{- if .sketchybar.enable }}
+# Install service
+brew tap FelixKratz/formulae
+install_packages "sketchybar"
+
+# Install fonts
+install_packages "cask font-sf-pro" \
+		 "cask sf-symbols" \
+		 "cask font-hack-nerd-font"
+
+# Start the service
+brew services start sketchybar
+{{- end }}
+
 # General packages
 install_packages {{ range $index, $pkg := .default.pkgs -}}{{ if $index }} {{ end }}"{{ $pkg }}"{{ end -}}

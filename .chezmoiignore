@@ -1,4 +1,8 @@
 README.md
+{{- if not .sketchybar.enable }}
+.config/sketchybar
+{{- end }}
+
 {{- if not .starship.enable }}
 .config/starship.toml
 {{- end }}

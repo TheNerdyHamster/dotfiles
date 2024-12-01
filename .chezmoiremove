@@ -1,0 +1,3 @@
+{{- if not .sketchybar.enable }}
+.config/sketchybar/**/**
+{{- end }}

@@ -2,12 +2,26 @@
 {{- $username := promptStringOnce . "username" "example" -}}
 {{- $starship_enable := promptBoolOnce . "starship.enable" "Enable Starship" -}}
 {{- $zinit_enable := promptBoolOnce . "zinit.enable" "Enable Zinit" -}}
+{{- $sketchybar_enable := promptBoolOnce . "sketchybar.enable" "Enable Sketchybar" -}}
 ---
 data:
     email: {{ $email | quote }}
     username: {{ $username | quote }}
+    sketchybar:
+        enable: {{ $sketchybar_enable }}
     starship:
         enable: {{ $starship_enable }}
+    zinit:
+        enable: {{ $zinit_enable }}
+        plugins:
+            - zsh-users/zsh-syntax-highlighting
+            - zsh-users/zsh-completions
+            - zsh-users/zsh-autosuggestions
+        snippets:
+            - OMZP::command-not-found
+            - OMZP::colored-man-pages
+#           - OMZP::macos # Try this sometime
+#           - OMZP::1password # Try this sometime
     default:
         pkgs:
             - eza
@@ -20,7 +34,6 @@ data:
             - git
             - telnet
             - felixkratz/formulae/borders
-            - felixkratz/formulae/sketchybar
             - wget
             - ykman
             - cask signal
@@ -29,14 +42,3 @@ data:
             - cask font-sf-pro
             - cask sf-symbols
             - cask kicad
-    zinit:
-        enable: {{ $zinit_enable }}
-        plugins:
-            - zsh-users/zsh-syntax-highlighting
-            - zsh-users/zsh-completions
-            - zsh-users/zsh-autosuggestions
-        snippets:
-            - OMZP::command-not-found
-            - OMZP::colored-man-pages
-#           - OMZP::macos # Try this sometime
-#           - OMZP::1password # Try this sometime
