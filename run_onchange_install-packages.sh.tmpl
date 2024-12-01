@@ -56,5 +56,10 @@ install_packages "cask font-sf-pro" \
 brew services start sketchybar
 {{- end }}
 
+# WMs
+{{- if eq .wm.type "aerospace" }}
+install_packages "cask nikitabobko/tap/aerospace"
+{{- end }}
+
 # General packages
 install_packages {{ range $index, $pkg := .default.pkgs -}}{{ if $index }} {{ end }}"{{ $pkg }}"{{ end -}}

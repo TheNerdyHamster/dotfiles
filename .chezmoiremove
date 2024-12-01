@@ -1,3 +1,11 @@
 {{- if not .sketchybar.enable }}
 .config/sketchybar/**/**
 {{- end }}
+
+{{- if ne .wm.type "aerospace" }}
+.config/aerospace/**
+{{- end }}
+
+#{{- if ne .wm.type "yabai" }}
+#.config/yabai/**
+#{{- end }}

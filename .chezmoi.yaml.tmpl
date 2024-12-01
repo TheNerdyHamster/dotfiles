@@ -3,12 +3,18 @@
 {{- $starship_enable := promptBoolOnce . "starship.enable" "Enable Starship" -}}
 {{- $zinit_enable := promptBoolOnce . "zinit.enable" "Enable Zinit" -}}
 {{- $sketchybar_enable := promptBoolOnce . "sketchybar.enable" "Enable Sketchybar" -}}
+{{- $window_manager_choices := list "yabai" "aerospace" "custom" -}}
+{{- $window_manager := promptChoiceOnce . "wm.type" "What type of window manager should be enable" $window_manager_choices -}}
+
 ---
 data:
     email: {{ $email | quote }}
     username: {{ $username | quote }}
     sketchybar:
         enable: {{ $sketchybar_enable }}
+    wm:
+        type: {{ $window_manager | quote }}
+        borders: false
     starship:
         enable: {{ $starship_enable }}
     zinit:
@@ -37,7 +43,6 @@ data:
             - wget
             - ykman
             - cask signal
-            - cask aerospace
             - cask font-hack-nerd-font
             - cask font-sf-pro
             - cask sf-symbols

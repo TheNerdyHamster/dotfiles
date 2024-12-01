@@ -49,7 +49,9 @@ default=(
 sketchybar --default "${default[@]}"
 
 # --- Left side items ---
+{{- if eq .wm.type "aerospace" }}
 source $ITEM_DIR/aerospace_spaces.sh
+{{- end }}
 source $ITEM_DIR/front_app.sh
 
 # -- Right Side Of Notch Items --

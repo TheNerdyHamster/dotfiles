@@ -10,3 +10,9 @@ README.md
 {{- if not .zinit.enable }}
 .zsh/zinit
 {{- end }}
+
+# WMs
+
+{{- if ne .wm.type "aerospace" }}
+.config/aerospace
+{{- end }}
