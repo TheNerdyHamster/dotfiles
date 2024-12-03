@@ -25,6 +25,10 @@ bindkey -e
 # Completion
 source_if_exists $HOME/.zsh/completion
 
+{{- if .zinit.enable }}
+zinit cdreplay -q
+{{- end }}
+
 # Shell integrations
 {{- if .starship.enable }}
 eval "$(starship init zsh)"
