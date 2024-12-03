@@ -2,6 +2,10 @@
 .config/sketchybar/**/**
 {{- end }}
 
+{{- if not .wezterm.enable }}
+.config/wezterm/**/**
+{{- end }}
+
 {{- if ne .wm.type "aerospace" }}
 .config/aerospace/**
 {{- end }}

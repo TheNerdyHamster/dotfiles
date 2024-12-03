@@ -3,6 +3,7 @@
 {{- $starship_enable := promptBoolOnce . "starship.enable" "Enable Starship" -}}
 {{- $zinit_enable := promptBoolOnce . "zinit.enable" "Enable Zinit" -}}
 {{- $sketchybar_enable := promptBoolOnce . "sketchybar.enable" "Enable Sketchybar" -}}
+{{- $wezterm_enable := promptBoolOnce . "wezterm.enable" "Enable Wezterm" -}}
 {{- $window_manager_choices := list "yabai" "aerospace" "custom" -}}
 {{- $window_manager := promptChoiceOnce . "wm.type" "What type of window manager should be enable" $window_manager_choices -}}
 
@@ -17,6 +18,8 @@ data:
         borders: false
     starship:
         enable: {{ $starship_enable }}
+    wezterm:
+        enable: {{ $wezterm_enable }}
     zinit:
         enable: {{ $zinit_enable }}
         plugins:

@@ -7,6 +7,10 @@ README.md
 .config/starship.toml
 {{- end }}
 
+{{- if not .wezterm.enable }}
+.config/wezterm
+{{- end }}
+
 {{- if not .zinit.enable }}
 .zsh/zinit
 {{- end }}
