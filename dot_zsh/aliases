@@ -1,0 +1,55 @@
+# General
+
+# Terminal
+alias c='clear'
+alias szsh='source ~/.zshrc'
+
+# Vim
+alias vi='nvim'
+alias vim='nvim'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../..'
+
+# Remapping ls to eza
+alias ls='eza --icons --color=always --group-directories-first' # my preferred listing
+alias la='eza -a  --icons --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -l  --icons --color=always --group-directories-first'  # long format
+alias lla='eza -al --icons --color=always --group-directories-first'  # long format
+alias lt='eza -aT --icons --color=always --group-directories-first' # tree listing
+
+# Git aliases
+
+alias gcm='git commit'
+alias ga='git add'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gcp='git cherry-pick'
+alias gd='git diff -w'
+alias gds='git diff -w --staged'
+alias grs='git restore --staged'
+alias gst='git rev-parse --git-dir > /dev/null 2>&1 && git status || eza'
+alias gcan='gc --amend --no-edit'
+
+# Chezmoi aliases
+alias ch='chezmoi'
+alias chd='chezmoi diff'
+alias chst='chezmoi status'
+alias chdoc='chezmoi doctor'
+
+alias cha='chezmoi add'
+alias chr='chezmoi re-add'
+alias chcd='chezmoi cd'
+alias che='chezmoi edit'
+alias chea='chezmoi edit --apply'
+
+alias chap='chezmoi apply'
+alias chup='chezmoi update'
+alias chug='chezmoi upgrade'
+
+# Misc
+myip () {
+	curl https://ipecho.net/plain; echo
+}
