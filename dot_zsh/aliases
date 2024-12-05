@@ -44,6 +44,7 @@ alias chr='chezmoi re-add'
 alias chcd='chezmoi cd'
 alias che='chezmoi edit'
 alias chea='chezmoi edit --apply'
+alias chew='chezmoi edit --watch'
 
 alias chap='chezmoi apply'
 alias chup='chezmoi update'
