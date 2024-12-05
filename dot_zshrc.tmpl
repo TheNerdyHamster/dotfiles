@@ -30,6 +30,7 @@ zinit cdreplay -q
 {{- end }}
 
 # Shell integrations
+eval "$(fzf --zsh)"
 {{- if .starship.enable }}
 eval "$(starship init zsh)"
 {{- end }}
