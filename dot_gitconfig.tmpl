@@ -45,29 +45,29 @@
 
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=2 -RFXS
+	pager = delta
 	autocrlf = input
 
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+[interactive]
+    diffFilter = delta --color-only
 
-[color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+[delta]
+    navigate = true
+    dark = true
+    minus-style                   = syntax "#37222c"
+    minus-non-emph-style          = syntax "#37222c"
+    minus-emph-style              = syntax "#713137"
+    minus-empty-line-marker-style = syntax "#37222c"
+    line-numbers-minus-style      = "#914c54"
+    plus-style                    = syntax "#20303b"
+    plus-non-emph-style           = syntax "#20303b"
+    plus-emph-style               = syntax "#2c5a66"
+    plus-empty-line-marker-style  = syntax "#20303b"
+    line-numbers-plus-style       = "#449dab"
+    line-numbers-zero-style       = "#3b4261"
 
-[diff-so-fancy]
-	changeHunkIndicators = true
-	stripLeadingSymbols = true
- 	markEmptyLines = false
- 	rulerWidth =
-	first-run = false
+[merga]
+    conflictstyle = zdiff3
 
 [status]
 	submodulesummary = true
