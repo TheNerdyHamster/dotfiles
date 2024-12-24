@@ -17,7 +17,7 @@
             system = "aarch64-darwin";
             specialArgs = { inherit inputs self; };
             modules = [ 
-                "./hosts/vault17/default.nix"
+                ./hosts/vault17
             ];
         };
     };
