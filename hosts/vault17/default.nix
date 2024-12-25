@@ -1,20 +1,43 @@
-{ self, pkgs, ... }:
+{ self, config, pkgs, ... }:
+
+let user = "lol"; in
 {
-    # List packages installed in system profile. To search by name, run:
-    # $ nix-env -qaP | grep wget
-    environment.systemPackages =
-    [
-        pkgs.vim
-        pkgs.neofetch
+
+    imports = [
+        ../../modules/darwin/home-manager.nix
     ];
 
-    # Necessary for using flakes on this system.
-    nix.settings.experimental-features = "nix-command flakes";
-    # Enable alternative shell support in nix-darwin.
+    # Automatic upgrades of nix packages.
+    services.nix-daemon.enable = true;
+
+    # Setup users, packages and progreams
+    nix = {
+        package = pkgs.nix;
+        configureBuildUsers = true;
+
+        settings = {
+            trusted-users = [ "@admin" "${user}" ];
+            experimental-features = "nix-command flakes";
+        };
+
+        gc = {
+            user = "root";
+            automatic = true;
+            interval = { Weekday = 0; Hour = 2; Minute = 0; };
+            options = "--delete-older-then 30d";
+        };
+    };
+
+    # List packages installed in system profile. To search by name, run:
+    # $ nix-env -qaP | grep wget
+    environment.systemPackages = with pkgs; [
+        #emacs-unstable
+    ];
 
     # Enable touchido Support for sudo.
     security.pam.enableSudoTouchIdAuth = true;
 
+    # Enable alternative shell support in nix-darwin.
     programs.zsh.enable = true;
 
     system = {
