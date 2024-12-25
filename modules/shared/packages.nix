@@ -9,8 +9,8 @@ with pkgs; [
     neofetch
     jq
     fd
-    fzf
     openssh
+    silver-searcher
     gcc
     coreutils
     ripgrep
