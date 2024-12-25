@@ -130,6 +130,63 @@ in
                     colors = "always";
                 };
 
+                bat = {
+                    enable = true;
+                    themes = {
+                        tokyonight-night = {
+                            src = pkgs.fetchFromGitHub {
+                                owner = "folke";
+                                repo = "tokyonight.nvim";
+                                rev = "054790b8676d0c561b22320d4b5ab3ef175f7445";
+                                sha256 = "sha256-mriZ9QBe1QIDsBkGd+tmg4bNFtD0evuSom2pWyQ1yEM=";
+
+                            };
+                            file = "extras/sublime/tokyonight_night.tmTheme";
+                        };
+                    };
+                    config = {
+                        theme = "tokyonight-night";
+                    };
+                };
+
+                jq = {
+                    enable = true;
+                    colors = {
+                        arrays = "1;37";
+                        false = "0;37";
+                        null = "1;30";
+                        numbers = "0;37";
+                        objects = "1;37";
+                        strings = "0;32";
+                        true = "0;37";
+                    };
+                };
+
+                fd = {
+                    enable = true;
+                    ignores = [
+                        ".git/"
+                        "*.bak"
+                        "*.tmp"
+                    ];
+                };
+
+                ripgrep = {
+                    enable = true;
+                    arguments = [
+                        "--max-columns-preview"
+                        "--pretty"
+                    ];
+                };
+
+                btop = {
+                    enable = true;
+                    settings = {
+                        color_theme = "tokyo-night";
+                        theme_background = false;
+                    };
+                };
+
                 direnv = {
                     enable = true;
                     nix-direnv.enable = true;

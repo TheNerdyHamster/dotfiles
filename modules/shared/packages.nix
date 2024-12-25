@@ -7,13 +7,10 @@ with pkgs; [
     curl
     neovim
     neofetch
-    jq
-    fd
     openssh
     silver-searcher
     gcc
     coreutils
-    ripgrep
     #sqlite installed as a dependency
     killall
     imagemagick
@@ -25,7 +22,6 @@ with pkgs; [
     nmap
     mtr
     inetutils
-    starship
     nowplaying-cli
     zip
     # xz
@@ -52,7 +48,7 @@ with pkgs; [
     lua
     stylua
     rustup
-    go
+    go # Migrate to homemanager
     ninja
     bash-language-server
     yaml-language-server
@@ -60,13 +56,8 @@ with pkgs; [
 
 
     # Custom stuff
-    btop
-    bat
-    eza
     tokei
 
     # Git
-    delta
     git-filter-repo
-    git
 ]
