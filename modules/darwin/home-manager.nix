@@ -37,9 +37,113 @@ in
             };
 
             programs = {
+
+                zsh = {
+                    enable = true;
+                    enableCompletion = true;
+                    autocd = true;
+                    defaultKeymap = "emacs";
+                    autosuggestion = {
+                        enable = true;
+                    };
+                    history = {
+                        path = "$HOME/.zsh_history";
+                        size = 50000;
+                        save = 100000;
+                        expireDuplicatesFirst = true;
+                        extended = true;
+                        ignoreDups = true;
+                        ignoreSpace = true;
+                        share = false;
+                        ignorePatterns = [
+                            "rm *"
+                        ];
+                    };
+                    dirHashes = {
+                        code = "$HOME/Documents/code";
+                        conf = "$HOME/.config";
+                        docs = "$HOME/Documents";
+                        dl = "$HOME/Downloads";
+                        pic = "$HOME/Pictures";
+                    };
+                    shellAliases = {
+                        # Terminal
+                        c = "clear";
+                        szsh = "source ~/.zshrc";
+                        
+                        # Vim
+                        vi = "nvim";
+                        vim = "nvim";
+                        
+                        # Navigation
+                        ".." = "cd ..";
+                        "..." = "cd ../..";
+                        "...." = "cd ../..";
+                        
+                        # Remapping ls to eza
+                        ls = "eza --icons --color = always --group-directories-first"; # my preferred listing
+                        la = "eza -a  --icons --color = always --group-directories-first";  # all files and dirs
+                        ll = "eza -l  --icons --color = always --group-directories-first";  # long format
+                        lla = "eza -al --icons --color = always --group-directories-first";  # long format
+                        lt = "eza -aT --icons --color = always --group-directories-first"; # tree listing
+                        
+                        # Git aliases
+                        gcm = "git commit";
+                        ga = "git add";
+                        gb = "git branch";
+                        gba = "git branch --all";
+                        gcp = "git cherry-pick";
+                        gd = "git diff -w";
+                        gds = "git diff -w --staged";
+                        grs = "git restore --staged";
+                        gst = "git rev-parse --git-dir > /dev/null 2>&1 && git status || eza";
+                        gcan = "gc --amend --no-edit";
+                        
+                        # Chezmoi aliases
+                        ch = "chezmoi";
+                        chd = "chezmoi diff";
+                        chst = "chezmoi status";
+                        chdoc = "chezmoi doctor";
+                        
+                        cha = "chezmoi add";
+                        chr = "chezmoi re-add";
+                        chcd = "chezmoi cd";
+                        che = "chezmoi edit";
+                        chea = "chezmoi edit --apply";
+                        chew = "chezmoi edit --watch";
+                        
+                        chap = "chezmoi apply";
+                        chup = "chezmoi update";
+                        chug = "chezmoi upgrade";
+                    };
+                };
+
                 direnv = {
                     enable = true;
                     nix-direnv.enable = true;
+                };
+
+                ssh = {
+                    enable = true;
+                    controlMaster = "auto";
+                    controlPath = "~/.ssh/sockets/master-%r@%h:%p.socket";
+                    controlPersist = "4h";
+
+                    extraOptionOverrides = {
+                        CanonicalDomains = "ladm.se loltech.se";
+                    };
+
+                    matchBlocks = {
+                        "github.com git.sr.ht" = {
+                            user = "git";
+                            identityFile = "~/.ssh/id_ed25519_sk_rk_private";
+                        };
+                        "*.ladm.se *.loltech.se" = {
+                            user = user;
+                            identityFile = "~/.ssh/id_ed25519_sk_rk_private";
+                        };
+                    };
+
                 };
 
                 git = {
