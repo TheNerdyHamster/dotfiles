@@ -36,17 +36,17 @@
             url = "github:nikitabobko/homebrew-tap";
             flake = false;
         };
-        d12frosted-emacs-plus = {
-            url = "github:d12frosted/homebrew-emacs-plus";
-            flake = false;
-        };
         darwin-emacs = {
             url = "github:c4710n/nix-darwin-emacs";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        darwin-emacs-packages = {
+            url = "github:nix-community/emacs-overlay";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, darwin, nixpkgs, home-manager, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-services, felixkratz-formulae, nikitabobko-tap, d12frosted-emacs-plus, darwin-emacs } @inputs:
+    outputs = { self, darwin, nixpkgs, home-manager, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-services, felixkratz-formulae, nikitabobko-tap, darwin-emacs, darwin-emacs-packages } @inputs:
     let
         user = "lol";
     in
@@ -70,7 +70,6 @@
                             "homebrew/homebrew-services" = homebrew-services;
                             "felixkratz/homebrew-formulae" = felixkratz-formulae; # Might remove
                             "nikitabobko/homebrew-tap" = nikitabobko-tap; # Remove as its no longer in use
-                            "d12frosted/homebrew-emacs-plus" = d12frosted-emacs-plus; # Will prob remove as I will prob install emacs from nixos 
                         };
                         mutableTaps = false;
                         user = "${user}";
@@ -79,6 +78,7 @@
                     nixpkgs = {
                         overlays = [
                             darwin-emacs.overlays.emacs
+                            darwin-emacs-packages.overlays.package
                         ];
                     };
                 }

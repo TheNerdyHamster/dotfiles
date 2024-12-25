@@ -17,22 +17,6 @@
         "type": "github"
       }
     },
-    "d12frosted-emacs-plus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1734881694,
-        "narHash": "sha256-0awwiJjYGvwzqghzjgQiE6rRyv//I68l2ivwdstbBfU=",
-        "owner": "d12frosted",
-        "repo": "homebrew-emacs-plus",
-        "rev": "5f1f625f43d498dcb9a931e0f351bfdaeb41cd1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "d12frosted",
-        "repo": "homebrew-emacs-plus",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -71,6 +55,27 @@
       "original": {
         "owner": "c4710n",
         "repo": "nix-darwin-emacs",
+        "type": "github"
+      }
+    },
+    "darwin-emacs-packages": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1735117934,
+        "narHash": "sha256-nxaWK1w7y3IFNAT3/zgDz4OeQ3TJfyDzgluOhWhdGxM=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "0a583fe7317026fbc456209e28718b3a85abbca9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
         "type": "github"
       }
     },
@@ -278,6 +283,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1734875076,
+        "narHash": "sha256-Pzyb+YNG5u3zP79zoi8HXYMs15Q5dfjDgwCdUI5B0nY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1807c2b91223227ad5599d7067a61665c52d1295",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1716330097,
@@ -312,9 +333,9 @@
     },
     "root": {
       "inputs": {
-        "d12frosted-emacs-plus": "d12frosted-emacs-plus",
         "darwin": "darwin",
         "darwin-emacs": "darwin-emacs",
+        "darwin-emacs-packages": "darwin-emacs-packages",
         "felixkratz-formulae": "felixkratz-formulae",
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
