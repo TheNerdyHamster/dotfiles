@@ -40,9 +40,13 @@
             url = "github:d12frosted/homebrew-emacs-plus";
             flake = false;
         };
+        darwin-emacs = {
+            url = "github:c4710n/nix-darwin-emacs";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, darwin, nixpkgs, home-manager, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-services, felixkratz-formulae, nikitabobko-tap, d12frosted-emacs-plus } @inputs:
+    outputs = { self, darwin, nixpkgs, home-manager, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, homebrew-services, felixkratz-formulae, nikitabobko-tap, d12frosted-emacs-plus, darwin-emacs } @inputs:
     let
         user = "lol";
     in
@@ -71,6 +75,11 @@
                         mutableTaps = false;
                         user = "${user}";
                         autoMigrate = true;
+                    };
+                    nixpkgs = {
+                        overlays = [
+                            darwin-emacs.overlays.emacs
+                        ];
                     };
                 }
                 ./hosts/vault17

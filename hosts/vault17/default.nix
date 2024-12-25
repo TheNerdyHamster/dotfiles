@@ -31,8 +31,27 @@ let user = "lol"; in
     # List packages installed in system profile. To search by name, run:
     # $ nix-env -qaP | grep wget
     environment.systemPackages = with pkgs; [
-        #emacs-unstable
+        emacs-29
+        # (pkgs.emacsWithPackagesFromUsePackage {
+        #     package = emacs-29;
+        #  })
     ];
+
+    launchd.user.agents = {
+        emacs = {
+            path = [ config.environment.systemPath ];
+            serviceConfig = {
+                KeepAlive = true;
+                ProgramArguments = [
+                    "/bin/sh"
+                    "-c"
+                    "{ osascript -e 'display notification \"Attempting to start Emacs...\" with title \"Emacs Launch\"'; /bin/wait4path ${pkgs.emacs}/bin/emacs && { ${pkgs.emacs}/bin/emacs --fg-daemon; if [ $? -eq 0 ]; then osascript -e 'display notification \"Emacs has started.\" with title \"Emacs Launch\"'; else osascript -e 'display notification \"Failed to start Emacs.\" with title \"Emacs Launch\"' >&2; fi; } } &> /tmp/emacs_launch.log"
+                ];
+                StandardErrorPath = "/tmp/emacs.err.log";
+                StandardOutPath = "/tmp/emacs.out.log";
+            };
+        };
+    };
 
     # Enable touchido Support for sudo.
     security.pam.enableSudoTouchIdAuth = true;

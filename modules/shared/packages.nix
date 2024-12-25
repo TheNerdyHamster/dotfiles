@@ -4,6 +4,7 @@ with pkgs; [
     # General packages
     wget
     curl
+    neovim
     neofetch
     jq
     fd
