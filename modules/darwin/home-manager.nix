@@ -1,7 +1,9 @@
 { config, pkgs, lib, home-manager, ... }:
 
 let
+    name = "TheNerdyHamster";
     user = "lol";
+    email = "leo@letnh.com";
 in
 {
     users.users.${user} = {
@@ -42,8 +44,8 @@ in
 
                 git = {
                     enable = true;
-                    userName = "TheNerdyHamster";
-                    userEmail = "leo@letnh.com";
+                    userName = name;
+                    userEmail = email;
                     extraConfig = {
                         core = {
                             editor = "nvim";
