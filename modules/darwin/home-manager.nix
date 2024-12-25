@@ -102,13 +102,6 @@ in
                         "..." = "cd ../..";
                         "...." = "cd ../..";
                         
-                        # Remapping ls to eza
-                        ls = "eza --icons --color = always --group-directories-first"; # my preferred listing
-                        la = "eza -a  --icons --color = always --group-directories-first";  # all files and dirs
-                        ll = "eza -l  --icons --color = always --group-directories-first";  # long format
-                        lla = "eza -al --icons --color = always --group-directories-first";  # long format
-                        lt = "eza -aT --icons --color = always --group-directories-first"; # tree listing
-                        
                         # Git aliases
                         gcm = "git commit";
                         ga = "git add";
@@ -120,23 +113,6 @@ in
                         grs = "git restore --staged";
                         gst = "git rev-parse --git-dir > /dev/null 2>&1 && git status || eza";
                         gcan = "gc --amend --no-edit";
-                        
-                        # Chezmoi aliases
-                        ch = "chezmoi";
-                        chd = "chezmoi diff";
-                        chst = "chezmoi status";
-                        chdoc = "chezmoi doctor";
-                        
-                        cha = "chezmoi add";
-                        chr = "chezmoi re-add";
-                        chcd = "chezmoi cd";
-                        che = "chezmoi edit";
-                        chea = "chezmoi edit --apply";
-                        chew = "chezmoi edit --watch";
-                        
-                        chap = "chezmoi apply";
-                        chup = "chezmoi update";
-                        chug = "chezmoi upgrade";
                     };
                 };
 
@@ -144,6 +120,14 @@ in
                     enable = true;
                     enableZshIntegration = true;
                     defaultCommand = "ag --hidden --ignore .git -g '' ";
+                };
+
+                eza = {
+                    enable = true;
+                    enableZshIntegration = true;
+                    git = true;
+                    icons = "always";
+                    colors = "always";
                 };
 
                 direnv = {
