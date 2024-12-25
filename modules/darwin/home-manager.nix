@@ -4,6 +4,7 @@ let
     name = "TheNerdyHamster";
     user = "lol";
     email = "leo@letnh.com";
+    files = import ./files.nix { inherit user config pkgs; };
 in
 {
     users.users.${user} = {
@@ -32,11 +33,17 @@ in
             home = {
                 enableNixpkgsReleaseCheck = false;
                 packages = pkgs.callPackage ./packages.nix {};
+
+                file = lib.mkMerge [
+                    files
+                ];
                 # Fix emacs
                 stateVersion = "23.11";
             };
 
             programs = {
+
+                home-manager.enable = true;
 
                 zsh = {
                     enable = true;
