@@ -53,6 +53,21 @@ in
                     autosuggestion = {
                         enable = true;
                     };
+                    initExtraBeforeCompInit = ''
+                        setopt extendedglob nomatch notify
+                        unsetopt beep
+                        # Zinit
+                        source "${pkgs.zinit}/share/zinit/zinit.zsh"
+                        source $HOME/.plugins.zsh
+                    '';
+                    completionInit = ''
+                        autoload -U zmv
+                        autoload -U promptinit && promptinit
+                        autoload colors && colors
+                        autoload -Uz compinit
+                        compinit
+                        zinit cdreplay -q
+                    '';
                     history = {
                         path = "$HOME/.zsh_history";
                         size = 50000;

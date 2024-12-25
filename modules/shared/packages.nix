@@ -2,6 +2,7 @@
 
 with pkgs; [
     # General packages
+    zinit
     wget
     curl
     neovim
