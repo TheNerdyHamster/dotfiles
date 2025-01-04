@@ -1,9 +1,8 @@
-hostname := "vault-17"
+hostname := `scutil --get LocalHostName`
 
 # List all commands
 default:
     @just --list
-
 
 # Update all flakes 
 [group("nix")]
@@ -17,6 +16,11 @@ up:
 [group("nix")]
 upp input:
     nix flake update {{input}}
+
+# Nix Repl
+[group("nix")]
+repl:
+    nix repl -f flake:nixpkgs
 
 # List all generations
 [group("nix")]
@@ -43,3 +47,17 @@ fmt:
 [group("nix")]
 gcroot:
     ls -al /nix/var/nix/gcroots/auto/
+
+# Macos Specific commands
+# Restart launchpad to force reindexing
+[macos]
+[group("desktop")]
+restart-launchpad:
+    defaults write com.apple.dock RestartLaunchPad -bool true
+    killall Dock
+
+# Rebuild and switch
+[macos]
+[group("desktop")]
+rb:
+    darwin-rebuild switch --flake .
