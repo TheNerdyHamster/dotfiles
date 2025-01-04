@@ -54,9 +54,12 @@ with pkgs; [
     yaml-language-server
     biome
 
-
+    just
     # Custom stuff
     tokei
+
+    # NIX Generator
+    nixos-generators
 
     # Git
     git-filter-repo
