@@ -1,6 +1,7 @@
 {
     inputs,
     lib,
+    mylib,
     system,
     genSpecialArgs,
     specialArgs ? (genSpecialArgs system),
@@ -10,16 +11,15 @@
 
     inherit (inputs) nixpkgs-darwin home-manager darwin;
     
-    #modules = {};
-in {
-    darwinConfigurations.${name} = darwin.lib.darwinSystem{
-        inherit system specialArgs;
-        modules = [
-            home-manager.darwinModules.home-manager
-            # temporary
-            {
-                system.stateVersion = 5;
-            }
-        ];
+    modules = {
+        darwin-modules =
+            (map mylib.relativeToRoot [
+                "modules/darwin"
+            ])
+            ++ [];
     };
+
+    systemArgs = modules // args;
+in {
+    darwinConfigurations.${name} = mylib.macosSystem systemArgs;
 }
