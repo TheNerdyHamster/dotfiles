@@ -5,12 +5,12 @@
 } @ inputs: let
     inherit (inputs.nixpkgs) lib;
     mylib = import ../lib {inherit lib;};
-    #myvars = import ../vars {inherit lib;};
+    myvars = import ../vars {inherit lib;};
 
     genSpecialArgs = system:
         inputs
         // {
-            inherit mylib;
+            inherit mylib myvars;
 
             pkgs-unstable = import inputs.nixpkgs-unstable {
                 inherit system;
@@ -22,8 +22,7 @@
             };
         };
 
-    #args = {inherit inputs lib mylib myvars genSpecialArgs; };
-    args = {inherit inputs lib mylib genSpecialArgs; };
+    args = {inherit inputs lib mylib myvars genSpecialArgs; };
 
     nixosSystems = {
         #x86_64-linux = import ./x86_64-linux (args // {system = "x86_64-linux";});
