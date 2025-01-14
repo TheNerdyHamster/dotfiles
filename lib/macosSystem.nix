@@ -2,6 +2,7 @@
     lib,
     inputs,
     darwin-modules,
+    #homebrew-modules ? [],
     home-modules ? [],
     system,
     genSpecialArgs,
@@ -33,4 +34,14 @@ in
                     }
                 ]
             );
+            # Will try to figure out this at a later point
+            # ++ (
+            #     lib.optionals ((lib.lists.length homebrew-modules) > 0)
+            #     # (map (config: nix-homebrew.darwinModules.nix-homebrew config) homebrew-modules)
+            #     [
+            #         nix-homebrew.darwinModules.nix-homebrew {
+            #             nix-homebrew = homebrew-modules;
+            #         }
+            #     ]
+            # );
     }

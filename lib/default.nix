@@ -11,6 +11,7 @@
             (lib.attrsets.filterAttrs
                 (path: _type:
                     (_type == "directory")
+                    #&& (path != "homebrew")
                     || (
                         (path != "default.nix")
                         && (lib.strings.hasSuffix ".nix" path)
