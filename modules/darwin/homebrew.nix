@@ -23,7 +23,9 @@
         ];
 
         brews = [
-
+            "wget"
+            "curl"
+            "m-cli"
         ];
 
         casks = [
