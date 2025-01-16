@@ -18,6 +18,7 @@
         darwin-modules =
             (map mylib.relativeToRoot [
                 "modules/darwin"
+                "hosts/${name}"
             ])
             ++ [];
         # Will fix this later
