@@ -21,6 +21,11 @@
                 "hosts/${name}"
             ])
             ++ [];
+
+        home-modules = map mylib.relativeToRoot [
+            "hosts/vault-17/home.nix"
+            "home/darwin"
+        ];
         # Will fix this later
         #homebrew-modules = import /modules/darwin/homebrew;
         # homebrew-modules = import (builtins.path {

@@ -29,7 +29,7 @@ in
                         home-manager.useUserPackages = true;
                         home-manager.backupFileExtension = "bak";
 
-                        home-manager.extraSpeialArgs = specialArgs;
+                        home-manager.extraSpecialArgs = specialArgs;
                         home-manager.users.lol.imports = home-modules;
                     }
                 ]
