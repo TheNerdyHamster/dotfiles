@@ -1,4 +1,5 @@
 {
+    myvars,
     pkgs,
     ...
 }: {
@@ -21,7 +22,7 @@
                 identityFile = "~/.ssh/id_ed25519_sk_rk_private";
             };
             "*.ladm.se *.loltech.se" = {
-                user = user;
+                user = myvars.username;
                 identityFile = "~/.ssh/id_ed25519_sk_rk_private";
             };
         };

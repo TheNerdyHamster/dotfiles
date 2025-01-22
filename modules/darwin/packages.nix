@@ -9,5 +9,6 @@
         yabai
         skhd
         sketchybar
+        dockutil
     ];
 }
