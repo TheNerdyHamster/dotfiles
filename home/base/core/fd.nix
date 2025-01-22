@@ -7,7 +7,7 @@
     
     programs.fd = {
         enable = true;
-        ignore = [
+        ignores = [
             ".git/"
             "*.bak"
             "*.tmp"

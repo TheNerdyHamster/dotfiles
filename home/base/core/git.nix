@@ -1,4 +1,5 @@
 {
+    myvars,
     pkgs,
     ...
 }: {
