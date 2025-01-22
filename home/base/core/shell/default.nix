@@ -1,10 +1,21 @@
 {
+    config,
     pkgs,
     ...
 }: {
     home.packages = with pkgs; [
         zinit
     ];
+
+    home.file.".plugins.zsh".text = ''
+        # Plugins
+        zinit light zsh-users/zsh-syntax-highlighting
+        zinit light zsh-users/zsh-completions
+        zinit light zsh-users/zsh-autosuggestions
+        # Snippets
+        zinit snippet OMZP::command-not-found
+        zinit snippet OMZP::colored-man-pages
+    '';
     programs.zsh = {
         enable = true;
         enableCompletion = true;
