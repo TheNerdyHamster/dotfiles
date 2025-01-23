@@ -10,5 +10,6 @@
         skhd
         sketchybar
         dockutil
+        m-cli
     ];
 }
