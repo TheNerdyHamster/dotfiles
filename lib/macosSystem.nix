@@ -26,7 +26,8 @@ in
                     home-manager.darwinModules.home-manager
                     {
                         home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
+                        # Will need to fix this as a later point if needed
+                        #home-manager.useUserPackages = true;
                         home-manager.backupFileExtension = "bak";
 
                         home-manager.extraSpecialArgs = specialArgs;
