@@ -2,10 +2,14 @@
     config,
     myvars,
     pkgs,
+    lib,
     ...
 } @ args: {
     nix.package = pkgs.nixVersions.latest;
-
+    
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elm (lib.getName pkg) [
+        "discord"
+    ];
     environment.systemPackages = with pkgs; [
         neofetch
         wget
