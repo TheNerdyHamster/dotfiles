@@ -109,7 +109,7 @@
             spaces.spans-displays = false;
             trackpad.TrackpadRightClick = true;
             trackpad.TrackpadThreeFingerTapGesture = 0;
-            universalaccess.reduceMotion = true;
+            #universalaccess.reduceMotion = true;
 
             CustomUserPreferences = {
                 ".GlobalPreferences" = {
