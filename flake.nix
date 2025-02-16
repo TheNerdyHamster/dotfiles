@@ -1,62 +1,43 @@
 {
-    description = "TNH nix configuration for MacOS";
+  description = "Example nix-darwin system flake";
 
-    outputs = inputs: import ./outputs inputs;
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-    nixConfig = {
-        # For later use
-        extra-substituters = [];
-        extra-trusted-public-keys = [];
+  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  let
+    configuration = { pkgs, ... }: {
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      environment.systemPackages =
+        [ pkgs.vim
+        ];
+
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
+      # Enable alternative shell support in nix-darwin.
+      # programs.fish.enable = true;
+
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 6;
+
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
     };
-
-    inputs = {
-        # Offical NixOS package source, by default unstable
-        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
-
-        # MacOS package source
-        nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-        darwin = {
-            url = "github:LnL7/nix-darwin";
-            inputs.nixpkgs.follows = "nixpkgs-darwin";
-        };
-        nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Not used atm
-
-        # Homebrew
-        nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-        homebrew-bundle = {
-            url = "github:homebrew/homebrew-bundle";
-            flake = false;
-        };
-        homebrew-core = {
-            url = "github:homebrew/homebrew-core";
-            flake = false;
-        };
-        homebrew-cask = {
-            url = "github:homebrew/homebrew-cask";
-            flake = false;
-        };
-        homebrew-services = {
-            url = "github:homebrew/homebrew-services";
-            flake = false;
-        };
-        felixkratz-formulae = {
-            url = "github:felixkratz/homebrew-formulae";
-            flake = false;
-        };
-        
-        # HomeManager for management of user configs
-        home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        # haumea = {
-        #     url = "github:nix-community/haumea/v0.2.2";
-        #     inputs.nixpkgs.follows = "nixpkgs";
-        # };
-
-        # My own repos
+  in
+  {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#simple
+    darwinConfigurations."vault-17" = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
     };
+  };
 }
