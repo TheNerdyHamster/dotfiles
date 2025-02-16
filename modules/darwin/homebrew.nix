@@ -33,6 +33,8 @@
 
             "signal"
 
+            "gnucash"
+
             "keycastr"
             "hyperkey"
             "osxfuse"
