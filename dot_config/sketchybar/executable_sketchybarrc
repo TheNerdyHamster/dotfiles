@@ -1,5 +1,0 @@
-#!/usr/bin/env lua
-
--- Load sketchybar packages
-require("helpers")
-require("init")

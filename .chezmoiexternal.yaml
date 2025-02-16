@@ -1,7 +1,0 @@
-.config/nvim:
-  type: git-repo
-  url: git@github.com:TheNerdyHamster/TNH-nvim.git
-
-Documents/code/github.com/neovim/neovim:
-  type: git-repo
-  url: https://github.com/neovim/neovim.git
