@@ -13,6 +13,7 @@
     imports = [
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.nix-index-database.darwinModules.nix-index
+        ./_mixins/scripts
     ];
 
     documentation.enable = true;
