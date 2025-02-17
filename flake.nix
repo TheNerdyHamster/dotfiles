@@ -2,9 +2,25 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
+    # Offical NixOS package source, by default unstable
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Nix needs reboot
+    nixos-needsreboot.url = "https://flakehub.com/f/wimpysworld/nixos-needsreboot/0.2.5.tar.gz";
+    nixos-needsreboot.inputs.nixpkgs.follows = "nixpkgs";
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    # Nix index database
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    # Sops
+    sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1.887.tar.gz";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = 
