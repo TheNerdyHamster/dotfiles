@@ -17,7 +17,7 @@
         isLaptop = laptop;
     in
     inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackges.${platform};
+        pkgs = inputs.nixpkgs.legacyPackages.${platform};
         extraSpecialArgs = {
             inherit
                 inputs

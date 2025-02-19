@@ -8,7 +8,7 @@
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # Nix needs reboot
     nixos-needsreboot.url = "https://flakehub.com/f/wimpysworld/nixos-needsreboot/0.2.5.tar.gz";
@@ -28,12 +28,12 @@
   let
     inherit (self) outputs;
 
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     helper = import ./lib { inherit inputs outputs stateVersion; };
   in
   {
       homeConfigurations = {
-        "lol@vault-17" = helper.mHome {
+        "lol@vault-17" = helper.mkHome {
             hostname = "vault-17";
             platform = "aarch64-darwin";
         };
