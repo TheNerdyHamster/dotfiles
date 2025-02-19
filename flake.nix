@@ -33,14 +33,14 @@
   in
   {
       homeConfigurations = {
-        # "lol@vault-17" = helper.mkHome {
-        #     hostname = "vault-17";
-        #     platform = "aarch64-darwin";
-        # };
-        # "Leo.Olofsson@vault-17" = helper.mkHome {
-        #     hostname = "vault-17";
-        #     platform = "aarch64-darwin";
-        # };
+        "lol@vault-17" = helper.mHome {
+            hostname = "vault-17";
+            platform = "aarch64-darwin";
+        };
+        "lol@vault-19" = helper.mkHome {
+            hostname = "vault-19";
+            platform = "aarch64-darwin";
+        };
       };
       darwinConfigurations = {
           vault-17 = helper.mkDarwin {
