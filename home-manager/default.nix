@@ -36,6 +36,46 @@ in
 
     news.display = "silent";
 
+    packages = with pkgs; [
+        neofetch
+        wget
+        fd
+        fzf
+        openssh
+        gcc
+        coreutils
+        ripgrep
+        killall
+        imagemagick
+        yubikey-manager
+
+        nmap
+        mtr
+        inetutils
+        nowplaying-cli
+        zip
+        gnumake
+        cmake
+        automake
+        autoconf
+        mailutils
+        jansson
+
+        libfido2
+
+        tree-sitter
+        lua
+        stylua
+        go
+        ninja
+        bash-language-server
+        yaml-language-server
+
+        tokei
+
+        git-filter-repo
+    ];
+
     nixpkgs = {
         overlays = [
 

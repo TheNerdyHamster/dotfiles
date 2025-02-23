@@ -32,6 +32,11 @@
             mas
             nix-output-monitor
             sops
+
+            utm
+            gnugrep
+            gnutar
+            dockutil
         ];
 
         variables = {
@@ -55,6 +60,39 @@
         autoMigrate = true;
         user = "${username}";
         mutableTaps = true;
+        taps = [
+            "homebrew/homebrew-core"
+                "homebrew/homebrew-cask"
+                "homebrew/homebrew-bundle"
+                "homebrew/homebrew-services"
+                "felixkratz/homebrew-formulae"
+        ];
+
+        brews = [
+            "wget"
+                "curl"
+        ];
+
+        casks = [
+            "kicad"
+                "obsidian"
+
+                "signal"
+
+                "gnucash"
+
+                "keycastr"
+                "hyperkey"
+                "osxfuse"
+                "macfuse"
+
+                # "firefox"
+
+                "spotify"
+
+                "font-hack-nerd-font"
+                "sf-symbols"
+        ];
     };
 
     nixpkgs = {
@@ -76,7 +114,7 @@
                 nix-path = config.nix.nixPath;
                 trusted-users = [
                     "root"
-                    "${username}"
+                        "${username}"
                 ];
                 warn-dirty = false;
             };
