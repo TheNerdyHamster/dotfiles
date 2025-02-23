@@ -52,6 +52,30 @@
             upgrade = true;
             cleanup = "zap";
         };
+        brews = [
+            "wget"
+            "curl"
+        ];
+
+        casks = [
+            "kicad"
+            "obsidian"
+
+            "signal"
+
+            "gnucash"
+
+            "keycastr"
+            "hyperkey"
+            "osxfuse"
+            "macfuse"
+
+            # "firefox"
+
+            "spotify"
+
+            "sf-symbols"
+        ];
     };
 
     nix-homebrew = {
@@ -60,39 +84,14 @@
         autoMigrate = true;
         user = "${username}";
         mutableTaps = true;
-        taps = [
-            "homebrew/homebrew-core"
-                "homebrew/homebrew-cask"
-                "homebrew/homebrew-bundle"
-                "homebrew/homebrew-services"
-                "felixkratz/homebrew-formulae"
-        ];
+        taps = {
+            "homebrew/homebrew-cask" = inputs.homebrew-cask;
+            "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+            "homebrew/homebrew-services" = inputs.homebrew-services;
+            "felixkratz/homebrew-formulae" = inputs.felixkratz-formulae;
+            "homebrew/homebrew-core" = inputs.homebrew-core;
+        };
 
-        brews = [
-            "wget"
-                "curl"
-        ];
-
-        casks = [
-            "kicad"
-                "obsidian"
-
-                "signal"
-
-                "gnucash"
-
-                "keycastr"
-                "hyperkey"
-                "osxfuse"
-                "macfuse"
-
-                # "firefox"
-
-                "spotify"
-
-                "font-hack-nerd-font"
-                "sf-symbols"
-        ];
     };
 
     nixpkgs = {

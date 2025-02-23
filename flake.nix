@@ -15,6 +15,26 @@
     nixos-needsreboot.inputs.nixpkgs.follows = "nixpkgs";
     # Homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-bundle = {
+        url = "github:homebrew/homebrew-bundle";
+        flake = false;
+    };
+    homebrew-core = {
+        url = "github:homebrew/homebrew-core";
+        flake = false;
+    };
+    homebrew-cask = {
+        url = "github:homebrew/homebrew-cask";
+        flake = false;
+    };
+    homebrew-services = {
+        url = "github:homebrew/homebrew-services";
+        flake = false;
+    };
+    felixkratz-formulae = {
+        url = "github:felixkratz/homebrew-formulae";
+        flake = false;
+    };
     # Nix index database
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
