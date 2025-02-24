@@ -1,6 +1,6 @@
 _: {
-    imports = [
-        ./utilities
-        ./web-browsers
-    ];
+  imports = [
+    ./utilities
+    ./web-browsers
+  ];
 }

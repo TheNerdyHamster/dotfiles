@@ -16,24 +16,24 @@
     # Homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-bundle = {
-        url = "github:homebrew/homebrew-bundle";
-        flake = false;
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
     };
     homebrew-core = {
-        url = "github:homebrew/homebrew-core";
-        flake = false;
+      url = "github:homebrew/homebrew-core";
+      flake = false;
     };
     homebrew-cask = {
-        url = "github:homebrew/homebrew-cask";
-        flake = false;
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
     };
     homebrew-services = {
-        url = "github:homebrew/homebrew-services";
-        flake = false;
+      url = "github:homebrew/homebrew-services";
+      flake = false;
     };
     felixkratz-formulae = {
-        url = "github:felixkratz/homebrew-formulae";
-        flake = false;
+      url = "github:felixkratz/homebrew-formulae";
+      flake = false;
     };
     # Nix index database
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -43,34 +43,36 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = 
-  { self, nix-darwin, nixpkgs, ...}@inputs:
-  let
+  outputs = {
+    self,
+    nix-darwin,
+    nixpkgs,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
 
     stateVersion = "25.05";
-    helper = import ./lib { inherit inputs outputs stateVersion; };
-  in
-  {
-      homeConfigurations = {
-        "lol@vault-17" = helper.mkHome {
-            hostname = "vault-17";
-            email = "26503572+TheNerdyHamster@users.noreply.github.com";
-            platform = "aarch64-darwin";
-        };
-        "lol@vault-19" = helper.mkHome {
-            hostname = "vault-19";
-            platform = "aarch64-darwin";
-        };
+    helper = import ./lib {inherit inputs outputs stateVersion;};
+  in {
+    homeConfigurations = {
+      "lol@vault-17" = helper.mkHome {
+        hostname = "vault-17";
+        email = "26503572+TheNerdyHamster@users.noreply.github.com";
+        platform = "aarch64-darwin";
       };
-      darwinConfigurations = {
-          vault-17 = helper.mkDarwin {
-              hostname = "vault-17";
-          };
-          vault-19 = helper.mkDarwin {
-              hostname = "vault-19";
-          };
+      "lol@vault-19" = helper.mkHome {
+        hostname = "vault-19";
+        platform = "aarch64-darwin";
       };
+    };
+    darwinConfigurations = {
+      vault-17 = helper.mkDarwin {
+        hostname = "vault-17";
+      };
+      vault-19 = helper.mkDarwin {
+        hostname = "vault-19";
+      };
+    };
     formatter = helper.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }

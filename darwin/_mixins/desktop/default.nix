@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-{
-    imports = [
-        ./apps
-        ./features
-    ];
+{pkgs, ...}: {
+  imports = [
+    ./apps
+    ./features
+  ];
 
-    environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 }

@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   name = builtins.baseNameOf (builtins.toString ./.);
   shellApplication = pkgs.writeShellApplication {
     inherit name;
-    runtimeInputs = with pkgs; [ ];
+    runtimeInputs = with pkgs; [];
     text = builtins.readFile ./${name}.sh;
   };
-in
-{
-  environment.systemPackages = with pkgs; [ shellApplication ];
+in {
+  environment.systemPackages = with pkgs; [shellApplication];
 }
