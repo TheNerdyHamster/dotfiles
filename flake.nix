@@ -71,6 +71,6 @@
               hostname = "vault-19";
           };
       };
-    formatter = helper.forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+    formatter = helper.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
