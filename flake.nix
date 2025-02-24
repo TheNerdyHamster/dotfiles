@@ -55,6 +55,7 @@
       homeConfigurations = {
         "lol@vault-17" = helper.mkHome {
             hostname = "vault-17";
+            email = "26503572+TheNerdyHamster@users.noreply.github.com";
             platform = "aarch64-darwin";
         };
         "lol@vault-19" = helper.mkHome {

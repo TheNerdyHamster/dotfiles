@@ -8,6 +8,7 @@
     mkHome = {
         hostname,
         username ? "lol",
+        email ? "unkown@changeme.local",
         laptop ? true,
         platform ? "x86_64-linux",
     }:
@@ -25,6 +26,7 @@
                 hostname
                 platform
                 username
+                email
                 stateVersion
                 isISO
                 isInstall
