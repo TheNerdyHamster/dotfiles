@@ -73,6 +73,8 @@
         hostname = "vault-19";
       };
     };
+
+    overlays = import ./overlays { inherit inputs; };
     formatter = helper.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
