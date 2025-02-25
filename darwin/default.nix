@@ -270,9 +270,9 @@
   };
 
   services = {
-      emacs = {
-          enable = true;
-          package = pkgs.emacs-30;
-      };
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-30;
+    };
   };
 }

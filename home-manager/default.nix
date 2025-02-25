@@ -129,8 +129,8 @@ in {
       nix-direnv.enable = true;
     };
     emacs = {
-        enable = true;
-        package = pkgs.emacs-30;
+      enable = true;
+      package = pkgs.emacs-30;
     };
     eza = {
       enable = true;
