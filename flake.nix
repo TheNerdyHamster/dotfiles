@@ -13,6 +13,8 @@
     # Nix needs reboot
     nixos-needsreboot.url = "https://flakehub.com/f/wimpysworld/nixos-needsreboot/0.2.5.tar.gz";
     nixos-needsreboot.inputs.nixpkgs.follows = "nixpkgs";
+    # Mac App Utils
+    mac-app-util.url = "github:hraban/mac-app-util";
     # Homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-bundle = {

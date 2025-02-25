@@ -13,6 +13,7 @@
 in {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
+    inputs.mac-app-util.homeManagerModules.default
   ];
 
   home = {

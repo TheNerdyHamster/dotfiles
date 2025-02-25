@@ -57,7 +57,9 @@
           isLaptop
           ;
       };
-      modules = [../darwin];
+      modules = [
+        ../darwin
+      ];
     };
 
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
