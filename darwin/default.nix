@@ -91,11 +91,12 @@
       "homebrew/homebrew-core" = inputs.homebrew-core;
     };
   };
-
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = lib.mkDefault "${platform}";
     overlays = [
+      inputs.darwin-emacs.overlays.emacs
+      inputs.darwin-emacs-packages.overlays.package
     ];
   };
 
@@ -266,5 +267,12 @@
         "com.apple.commerce".AutoUpdate = true;
       };
     };
+  };
+
+  services = {
+      emacs = {
+          enable = true;
+          package = pkgs.emacs-30;
+      };
   };
 }

@@ -75,6 +75,8 @@ in {
 
   nixpkgs = {
     overlays = [
+      inputs.darwin-emacs.overlays.emacs
+      inputs.darwin-emacs-packages.overlays.package
     ];
 
     config = {
@@ -124,6 +126,10 @@ in {
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+    emacs = {
+        enable = true;
+        package = pkgs.emacs-30;
     };
     eza = {
       enable = true;
