@@ -37,15 +37,6 @@
       url = "github:felixkratz/homebrew-formulae";
       flake = false;
     };
-    # Emacs
-    darwin-emacs = {
-      url = "github:c4710n/nix-darwin-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    darwin-emacs-packages = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Nix index database
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";

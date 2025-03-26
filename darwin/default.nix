@@ -36,8 +36,16 @@
       gnugrep
       gnutar
       dockutil
+
+      libgccjit
+      deno
+
+      (emacs.override {
+          withNativeCompilation = false;
+       })
     ];
 
+    pathsToLink = [ "/Applications/Emacs.app" ];
     variables = {
       EDITOR = "emacs";
       VISUAL = "emacs";
@@ -55,6 +63,11 @@
       "wget"
       "curl"
     ];
+
+    masApps = {
+        "Bitwarden" = 1352778147;
+        "Wireguard" = 1451685025;
+    };
 
     casks = [
       "kicad"
@@ -74,6 +87,7 @@
       "spotify"
 
       "sf-symbols"
+      "ghostty"
     ];
   };
 
@@ -94,10 +108,6 @@
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = lib.mkDefault "${platform}";
-    overlays = [
-      inputs.darwin-emacs.overlays.emacs
-      inputs.darwin-emacs-packages.overlays.package
-    ];
   };
 
   nix = let
@@ -119,6 +129,18 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
+  launchd.user.agents.emacs.path = [ config.environment.systemPath ];
+  launchd.user.agents.emacs.serviceConfig = {
+      KeepAlive = true;
+      ProgramArguments = [
+        "/bin/sh"
+        "-c"
+        "/bin/wait4path ${pkgs.emacs}/bin/emacs && exec ${pkgs.emacs}/bin/emacs --fg-daemon"
+      ];
+      StandardErrorPath = "/tmp/emacs.err.log";
+      StandardOutPath = "/tmp/emacs.out.log";
+  };
+
   networking.hostName = hostname;
   networking.computerName = hostname;
 
@@ -134,10 +156,7 @@
     nix-index-database.comma.enable = true;
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
-
-  services = {
-  };
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system = {
     stateVersion = 6;
@@ -270,9 +289,5 @@
   };
 
   services = {
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-30;
-    };
   };
 }

@@ -60,7 +60,14 @@ in {
       lua
       stylua
       go
+      gopls
+      gofumpt
+      gotools
+      bun
       ninja
+      jc
+      dig
+      typescript-language-server
       bash-language-server
       yaml-language-server
 
@@ -76,8 +83,6 @@ in {
 
   nixpkgs = {
     overlays = [
-      inputs.darwin-emacs.overlays.emacs
-      inputs.darwin-emacs-packages.overlays.package
     ];
 
     config = {
@@ -97,6 +102,14 @@ in {
     # Snippets
     zinit snippet OMZP::command-not-found
     zinit snippet OMZP::colored-man-pages
+  '';
+
+  home.file.".config/ghostty/config".text = ''
+    font-family = "Hack Nerd Font Mono"
+    font-size = 14
+    theme = "dracula"
+    background-opacity = 0.95
+    background-blur = true
   '';
 
   programs = {
@@ -127,10 +140,6 @@ in {
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-    };
-    emacs = {
-      enable = true;
-      package = pkgs.emacs-30;
     };
     eza = {
       enable = true;
