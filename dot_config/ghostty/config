@@ -1,0 +1,29 @@
+shell-integration = zsh
+font-family = Hack Nerd Font Mono
+font-size = 14
+theme = Dracula
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+
+background-opacity = 0.95
+background-blur = true
+
+keybind = cmd+n=new_window
+
+keybind = cmd+h=goto_split:left
+keybind = cmd+j=goto_split:bottom
+keybind = cmd+k=goto_split:top
+keybind = cmd+l=goto_split:right
+
+keybind = cmd+a>h=new_split:left
+keybind = cmd+a>j=new_split:down
+keybind = cmd+a>k=new_split:up
+keybind = cmd+a>l=new_split:right
+keybind = cmd+a>f=toggle_split_zoom
+
+keybind = cmd+a>n=next_tab
+keybind = cmd+a>p=previous_tab
+
+keybind = super+r=reload_config
+
+window-save-state = always

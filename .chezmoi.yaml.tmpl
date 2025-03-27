@@ -1,0 +1,42 @@
+{{- $email := promptStringOnce . "email" "example@example.org" -}}
+{{- $username := promptStringOnce . "username" "example" -}}
+
+---
+backup: true
+data:
+    email: {{ $email | quote }}
+    username: {{ $username | quote }}
+    zinit:
+        plugins:
+            - zsh-users/zsh-syntax-highlighting
+            - zsh-users/zsh-completions
+            - zsh-users/zsh-autosuggestions
+        snippets:
+            - OMZP::command-not-found
+            - OMZP::colored-man-pages
+#           - OMZP::macos # Try this sometime
+#           - OMZP::1password # Try this sometime
+    default:
+        pkgs:
+            - eza
+            - bat
+            - diff-so-fancy
+            - git-filter-repo
+            - jq
+            - fzf
+            - openssh
+            - git
+            - telnet
+            - felixkratz/formulae/borders
+            - wget
+            - ykman
+            - ninja
+            - cmake
+            - gettext
+            - curl
+            - cask hyperkey
+            - cask signal
+            - cask font-hack-nerd-font
+            - cask font-sf-pro
+            - cask sf-symbols
+            - cask kicad
