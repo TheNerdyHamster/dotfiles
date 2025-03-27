@@ -1,0 +1,6 @@
+*.out
+.DS_Store
+bin/
+dist/
+result
+*.log

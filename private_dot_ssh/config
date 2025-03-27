@@ -1,0 +1,22 @@
+CanonicalDomains ladm.se loltech.se
+Host *.ladm.se *.loltech.se
+  User lol
+  IdentityFile ~/.ssh/id_ed25519_sk_rk_private
+
+Host github.com git.sr.ht
+  User git
+  IdentityFile ~/.ssh/id_ed25519_sk_rk_private
+
+Host *
+  ForwardAgent no
+  AddKeysToAgent no
+  Compression no
+  ServerAliveInterval 0
+  ServerAliveCountMax 3
+  HashKnownHosts no
+  UserKnownHostsFile ~/.ssh/known_hosts
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/master-%r@%h:%p.socket
+  ControlPersist 4h
+
+  
