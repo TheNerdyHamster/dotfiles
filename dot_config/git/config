@@ -1,3 +1,10 @@
+[includeIf "gitdir:~/Documents/code/gitlab.com/"]
+    path = ~/.config/git/gitlab
+[includeIf "gitdir:~/Documents/code/github.com/"]
+    path = ~/.config/git/github
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+    path = ~/.config/git/github
+
 [aliases]
 	a = "add"
 	al = "add ."
@@ -56,6 +63,3 @@
 	plus-non-emph-style = "syntax #20303b"
 	plus-style = "syntax #20303b"
 
-[user]
-	email = {{ .email }}
-	name = {{ .username }}
