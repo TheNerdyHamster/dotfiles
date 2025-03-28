@@ -54,3 +54,17 @@ alias chug='chezmoi upgrade'
 myip () {
 	curl https://ipecho.net/plain; echo
 }
+
+
+httpcode () {
+ if [[ $# -ne 1 ]]; then
+	 echo "Usage: $0 <number>"
+	 return 1
+ fi
+ if [[ $1 =~ ^[0-9]{3}$ ]] || [[ $1 -ge 1 && $1 -le 999 ]]; then
+	 open https://http.cat/$1
+ else
+	 echo "Invalid input: $1"
+	 return 1
+ fi
+}

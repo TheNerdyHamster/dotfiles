@@ -25,28 +25,10 @@ bindkey -e
 # Completion
 source_if_exists $HOME/.zsh/completion
 
+# Custom
+source_if_exists $HOME/.zsh/custom
+
 zinit cdreplay -q
-
-glogin() {
- glab auth login \
-	 --token $(bw get item 9b555ed2-cfeb-4e5c-a3a4-b296014a7df9 | jq -r '.fields[] | select(.name == "token")'.value) \
-	 --git-protocol ssh \
-	 --api-protocol https
-}
-
-httpcode () {
- if [[ $# -ne 1 ]]; then
-	 echo "Usage: $0 <number>"
-	 return 1
- fi
- if [[ $1 =~ ^[0-9]{3}$ ]] || [[ $1 -ge 1 && $1 -le 999 ]]; then
-	 open https://http.cat/$1
- else
-	 echo "Invalid input: $1"
-	 return 1
- fi
-}
-
 
 # Shell integrations
 eval "$(fzf --zsh)"
